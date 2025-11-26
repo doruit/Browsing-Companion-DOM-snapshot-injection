@@ -110,3 +110,166 @@ wed, 26 nov 2025 18:11:49 gmt
 '
 ActivityId: 2a2a9474-4980-4e54-b2cf-624447fd0d7f, Microsoft.Azure.Documents.Common/2.14.0
 INFO:     127.0.0.1:62676 - "POST /process-chat HTTP/1.1" 200 OK
+Error fetching preferences: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/b2b-user
+wed, 26 nov 2025 18:12:18 gmt
+
+'
+ActivityId: 57eaa210-d645-4634-9357-42da49cc5dda, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/b2b-user
+wed, 26 nov 2025 18:12:18 gmt
+
+'
+ActivityId: 57eaa210-d645-4634-9357-42da49cc5dda, Microsoft.Azure.Documents.Common/2.14.0
+OpenAI Response: ChatCompletion(id='chatcmpl-CgEHzfLBXCyIAjf8A07BoEU72eGhI', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen:\n\n1. **Classic Leather Oxford** \n   - Price: `$129.99`\n   - Category: Formal\n   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions\n\n2. **Air Cushion Running Shoes** \n   - Price: `$89.99`\n   - Category: Athletic\n   - ✨ Lightweight running shoes with advanced air cushioning technology (15% off)\n\n3. **Professional Safety Boots** \n   - Price: `$159.99`\n   - Category: Work\n   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection (20% off)\n\n4. **Canvas Low-Top Sneakers** \n   - Price: `$49.99`\n   - Category: Casual\n   - ✨ Comfortable canvas sneakers for everyday casual wear\n\n5. **Premium Hiking Boots** \n   - Price: `$199.99`\n   - Category: Outdoor\n   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails (10% off)\n\n6. **Ballet Flat Comfort** \n   - Price: `$59.99`\n   - Category: Casual\n   - ✨ Elegant ballet flats with memory foam insole for all-day comfort\n\n7. **High-Performance Basketball** \n   - Price: `$149.99`\n   - Category: Athletic\n   - ✨ Professional basketball shoes with responsive cushioning and grip (25% off)\n\n8. **Dress Loafers Premium** \n   - Price: `$119.99`\n   - Category: Formal\n   - ✨ Slip-on leather loafers combining comfort with sophisticated style\n\n### 🎯 My Recommendation\nFor B2B purchases, the **Professional Safety Boots** and **Classic Leather Oxford** are excellent choices, especially if you're looking for quality and compliance with workplace standards! If you're interested, let me know and I can help you filter the options further!", refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764180739, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=402, prompt_tokens=856, total_tokens=1258, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
+Assistant message: ## 👟 Products I Can See
+
+Here are the shoes currently visible on your screen:
+
+1. **Classic Leather Oxford** 
+   - Price: `$129.99`
+   - Category: Formal
+   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions
+
+2. **Air Cushion Running Shoes** 
+   - Price: `$89.99`
+   - Category: Athletic
+   - ✨ Lightweight running shoes with advanced air cushioning technology (15% off)
+
+3. **Professional Safety Boots** 
+   - Price: `$159.99`
+   - Category: Work
+   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection (20% off)
+
+4. **Canvas Low-Top Sneakers** 
+   - Price: `$49.99`
+   - Category: Casual
+   - ✨ Comfortable canvas sneakers for everyday casual wear
+
+5. **Premium Hiking Boots** 
+   - Price: `$199.99`
+   - Category: Outdoor
+   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails (10% off)
+
+6. **Ballet Flat Comfort** 
+   - Price: `$59.99`
+   - Category: Casual
+   - ✨ Elegant ballet flats with memory foam insole for all-day comfort
+
+7. **High-Performance Basketball** 
+   - Price: `$149.99`
+   - Category: Athletic
+   - ✨ Professional basketball shoes with responsive cushioning and grip (25% off)
+
+8. **Dress Loafers Premium** 
+   - Price: `$119.99`
+   - Category: Formal
+   - ✨ Slip-on leather loafers combining comfort with sophisticated style
+
+### 🎯 My Recommendation
+For B2B purchases, the **Professional Safety Boots** and **Classic Leather Oxford** are excellent choices, especially if you're looking for quality and compliance with workplace standards! If you're interested, let me know and I can help you filter the options further!
+Message type: <class 'str'>
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:12:33 gmt
+
+'
+ActivityId: 3cfce54f-6859-48a8-961f-c72ab073c230, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:12:33 gmt
+
+'
+ActivityId: 3cfce54f-6859-48a8-961f-c72ab073c230, Microsoft.Azure.Documents.Common/2.14.0
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:12:33 gmt
+
+'
+ActivityId: f7e75b62-1819-423d-b191-fdd092f956b2, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:12:33 gmt
+
+'
+ActivityId: f7e75b62-1819-423d-b191-fdd092f956b2, Microsoft.Azure.Documents.Common/2.14.0
+INFO:     127.0.0.1:62877 - "POST /process-chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63091 - "GET /utility/recipe-images/random?count=10&t=1764180778780 HTTP/1.1" 404 Not Found
+Error fetching preferences: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/b2b-user
+wed, 26 nov 2025 18:13:00 gmt
+
+'
+ActivityId: c850096b-0598-4e31-b6a9-74379891e7c5, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/b2b-user
+wed, 26 nov 2025 18:13:00 gmt
+
+'
+ActivityId: c850096b-0598-4e31-b6a9-74379891e7c5, Microsoft.Azure.Documents.Common/2.14.0
+Error fetching conversation history: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'post
+docs
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:00 gmt
+
+'
+ActivityId: 0f4c3d56-942c-486e-bebb-d8f522a86109, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'post
+docs
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:00 gmt
+
+'
+ActivityId: 0f4c3d56-942c-486e-bebb-d8f522a86109, Microsoft.Azure.Documents.Common/2.14.0
+OpenAI Response: ChatCompletion(id='chatcmpl-CgEIfbSUL1xuoUgJlRHOFRJyl9ou6', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="## 📂 Selected Category\n\nThe currently selected category is **formal**. \n\nIf you're looking for something different or have specific preferences in mind, feel free to let me know! 😊", refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764180781, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=38, prompt_tokens=774, total_tokens=812, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
+Assistant message: ## 📂 Selected Category
+
+The currently selected category is **formal**. 
+
+If you're looking for something different or have specific preferences in mind, feel free to let me know! 😊
+Message type: <class 'str'>
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:02 gmt
+
+'
+ActivityId: bfb42758-4ea6-48f4-9de4-62453fbedc88, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:02 gmt
+
+'
+ActivityId: bfb42758-4ea6-48f4-9de4-62453fbedc88, Microsoft.Azure.Documents.Common/2.14.0
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:02 gmt
+
+'
+ActivityId: d62a441b-e5a3-44fb-b044-3776f41799b1, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:13:02 gmt
+
+'
+ActivityId: d62a441b-e5a3-44fb-b044-3776f41799b1, Microsoft.Azure.Documents.Common/2.14.0
+INFO:     127.0.0.1:63101 - "POST /process-chat HTTP/1.1" 200 OK
