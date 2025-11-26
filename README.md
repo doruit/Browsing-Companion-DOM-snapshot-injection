@@ -11,6 +11,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 - Maintain conversation history and user preferences
 
 ![Smart Shopping Companion Demo](docs/images/smart-shopping-companion.jpg.png)
+
 *Live demo showing the AI chatbot filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
 
 ## 🏗️ Architecture
