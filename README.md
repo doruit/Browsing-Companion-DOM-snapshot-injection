@@ -226,6 +226,99 @@ Rotating question suggestions help users discover features:
 - Changes every 10 seconds to maintain engagement
 - Click any suggestion to instantly send it as a message
 
+## 🏛️ Implementation Approach
+
+This repository demonstrates **Method 1: Client-Side DOM Snapshot** - the simplest and most foundational approach to building context-aware chatbots. While this method has limitations (no persistent memory across sessions, no cross-device support, context limited to current viewport), it serves as an excellent starting point, working demo, and educational foundation.
+
+### Why Start Here?
+
+Method 1 is perfect for:
+- **Rapid prototyping**: Get a working demo in 1-2 days
+- **Learning fundamentals**: Understand context capture before adding complexity
+- **Low-cost validation**: Test your idea with minimal infrastructure ($0.001/user/month)
+- **MVP development**: Launch quickly, iterate based on user feedback
+
+### Six Methods Compared
+
+For a comprehensive guide to context-aware chatbot implementations ranging from simple mockups to enterprise-grade solutions, see **[Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md)**.
+
+Here's a quick comparison of all six methods:
+
+| Method | Implementation Time | Monthly Cost/User | Key Features | Best For |
+|--------|-------------------|------------------|--------------|----------|
+| **1. Client DOM** (This Repo) | 1-2 days | $0.001 | Real-time viewport context | Demos, MVPs, prototypes |
+| **2. Browser Storage** | 2-3 days | $0.002 | Session persistence (same browser) | Single-device apps |
+| **3. Cosmos DB Sessions** | 1-2 weeks | $0.02 | Cross-device sync, chat history | Production apps |
+| **4. Event Streams** | 3-4 weeks | $0.60 | Behavioral analytics, ML insights | High-traffic platforms |
+| **5. Vector Embeddings** | 2-3 weeks | $0.30 | Semantic search, recommendations | AI-enhanced experiences |
+| **6. Multi-Modal + Graph** | 2-3 months | $6.00 | Visual analysis, explainable AI | Enterprise-scale systems |
+
+#### Method 1: Client-Side DOM Snapshot (Current Implementation)
+
+**What it does**: Captures visible product details from the DOM every time the user sends a chat message.
+
+**Strengths**:
+- ✅ Zero infrastructure cost (no database needed)
+- ✅ Instant implementation (1-2 days)
+- ✅ Real-time viewport awareness
+- ✅ Perfect for demos and learning
+
+**Limitations**:
+- ❌ No memory across page refreshes
+- ❌ Context limited to visible products only
+- ❌ No cross-device sync
+- ❌ No conversation history persistence
+
+#### Method 3: Azure Cosmos DB Sessions (Next Evolution)
+
+**What it adds**: Stores user sessions, preferences, and chat history in Azure Cosmos DB with hierarchical partition keys.
+
+**New capabilities**:
+- ✅ Conversation history survives browser restarts
+- ✅ Cross-device sync (phone ↔ desktop)
+- ✅ User preference learning over time
+- ✅ TTL-based automatic cleanup
+- ✅ Production-ready scalability
+
+**Cost**: ~$0.02/user/month (Cosmos DB serverless tier)
+
+#### Method 5: Vector Embeddings + Semantic Memory
+
+**What it adds**: Semantic search over past browsing behavior using Cosmos DB's built-in vector search.
+
+**New capabilities**:
+- ✅ "Similar to what you viewed" recommendations
+- ✅ Semantic understanding of user interests
+- ✅ No separate vector database needed (Cosmos DB has built-in vector indexing)
+- ✅ Long-term user preference modeling
+
+**Cost**: ~$0.30/user/month (includes embedding API calls)
+
+### Evolution Path Recommendation
+
+If you're building on this demo, here's the recommended progression:
+
+1. **Month 1-2**: Start with **Method 1** (this repo) to validate your concept
+2. **Month 3-4**: Upgrade to **Method 3** (Cosmos DB sessions) when you need production reliability
+3. **Month 6-9**: Add **Method 5** (vector embeddings) when you want AI-powered recommendations
+4. **Month 12+**: Consider **Method 4** (event streams) or **Method 6** (knowledge graphs) for enterprise scale
+
+Each evolution builds on the previous one - you're not rewriting from scratch, just adding layers of sophistication.
+
+### 📖 Full Documentation
+
+For detailed implementation guides, code examples, architecture diagrams, cost breakdowns, and best practices for all six methods, see:
+
+**[📚 Context-Aware Chatbot Methods Guide](docs/CONTEXT_AWARE_METHODS.md)**
+
+This comprehensive document includes:
+- Step-by-step implementation code for each method
+- Azure Cosmos DB optimization techniques (Hierarchical Partition Keys, TTL, vector search)
+- Cost analysis and ROI calculations
+- Comparison matrices and feature tables
+- Evolution paths and decision frameworks
+- Developer tools (VS Code extensions, emulators)
+
 ## 📁 Project Structure
 
 ```
@@ -349,6 +442,94 @@ az group delete --name $RESOURCE_GROUP --yes --no-wait
 - [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [Cosmos DB Best Practices](https://learn.microsoft.com/en-us/azure/cosmos-db/)
 - [Bicep Documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
+- [Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md) - Our comprehensive implementation guide
+
+## 🤖 Development Notes
+
+### AI-Assisted Development
+
+I want to be transparent: **this project was developed with heavy assistance from AI coding agents**, particularly during:
+
+- **Architecture design** - Structuring the three-service architecture and Azure resource configuration
+- **Debugging complex issues** - Solving empty chat responses (GPT token allocation), CORS problems, image loading failures
+- **Code optimization** - Refactoring components, implementing markdown rendering, filter extraction logic
+- **Documentation creation** - Writing comprehensive guides, technical documentation, and code comments
+- **Best practices implementation** - Azure Cosmos DB patterns (HPK, TTL, vector search), error handling, diagnostics
+
+### The AI Collaboration Model
+
+The AI agents served multiple roles:
+
+- **Problem-solving partners** for diagnosing technical issues (e.g., "Why are chat responses empty?")
+- **Code reviewers** suggesting improvements and catching edge cases
+- **Documentation writers** creating detailed guides like CONTEXT_AWARE_METHODS.md
+- **Best practice advisors** for Azure services, React patterns, and API design
+- **Refactoring assistants** helping migrate from GPT-5-mini to GPT-4o-mini across 10+ files
+
+### Human-AI Division of Labor
+
+**Human decisions** (my role):
+- Business requirements and user experience goals
+- Architecture choices (why three services? why this tech stack?)
+- Product vision (context-aware e-commerce chatbot concept)
+- Feature priorities and scope
+- Final review and acceptance of all code
+
+**AI contributions** (coding agents):
+- Implementation speed (writing boilerplate, configuration files)
+- Syntax accuracy and error handling
+- Documentation thoroughness
+- Best practice recommendations
+- Multi-file refactoring coordination
+
+### Tools Used
+
+- **GitHub Copilot** - For inline code suggestions and completions
+- **Claude** (Anthropic) - For architectural discussions and complex debugging
+- **AI coding assistants** - For documentation generation and code review
+
+### Why This Matters
+
+This approach demonstrates the **power of human-AI collaboration** in modern software development:
+
+1. **Faster iteration** - What might take weeks solo can be done in days
+2. **Higher quality** - AI catches edge cases and suggests best practices I might miss
+3. **Better documentation** - AI excels at creating comprehensive, well-structured docs
+4. **Learning acceleration** - AI explains Azure services and patterns as we build
+
+### Replicating This Approach
+
+If you're interested in AI-assisted development workflows, this repo serves as a **real-world example** of what's possible when humans and AI work together effectively:
+
+- **Start with clear goals** - Know what you want to build before involving AI
+- **Use AI for acceleration** - Let AI handle boilerplate, configuration, documentation
+- **Maintain human judgment** - Review all AI-generated code, especially architecture decisions
+- **Document the process** - Keep notes on what worked and what didn't
+- **Iterate collaboratively** - Use AI as a thought partner, not just a code generator
+
+### Limitations and Learnings
+
+**What worked well**:
+- AI excelled at Azure Bicep templates and configuration files
+- Documentation generation was high-quality and comprehensive
+- Debugging assistance was invaluable (especially for GPT token issues)
+- Multi-file refactoring (renaming, updating imports) was flawless
+
+**What required human oversight**:
+- Architecture decisions (service boundaries, technology choices)
+- User experience design (chat widget placement, filter interactions)
+- Cost optimization (choosing serverless Cosmos DB, balancing features vs. budget)
+- Security decisions (what to .gitignore, how to handle secrets)
+
+### Acknowledgment
+
+This transparency is important because:
+1. **Honesty matters** - Users should know how software is built
+2. **Learning resource** - This repo can help others learn AI-assisted development
+3. **Setting expectations** - AI-generated code still needs human review and testing
+4. **Future reference** - As AI coding tools evolve, this documents 2024-era capabilities
+
+If you have questions about the AI-assisted development process, feel free to open an issue or reach out!
 
 ## 📄 License
 
