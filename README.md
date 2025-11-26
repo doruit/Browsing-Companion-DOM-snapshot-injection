@@ -6,6 +6,8 @@ A context-aware chatbot demo for e-commerce that "sees" what the user is viewing
 
 This project demonstrates a shoe e-commerce website where an AI chatbot assistant can:
 - See which products are currently visible on the user's screen
+- **Distinguish between visible products and those below the fold** (requiring scrolling)
+- Guide users to scroll when matching products are further down the page
 - Provide personalized recommendations based on user preferences (B2B/B2C, category filters)
 - Answer questions about visible products using context from DOM snapshots
 - Maintain conversation history and user preferences
@@ -488,6 +490,9 @@ The AI can see which products are currently visible in your viewport!
 ### 1. **Context-Aware AI Chatbot** 🤖
 The Smart Shopping Companion can "see" what's on your screen:
 - Detects visible products in viewport using Intersection Observer
+- **Distinguishes between visible products and below-fold products** (requires scrolling)
+- Guides users with phrases like "if you scroll down a bit..." when matching products are below the fold
+- **Click-to-scroll**: Click any product name in chatbot responses to automatically scroll to and highlight that product
 - Captures product details (name, price, category, discount, stock status)
 - Maintains conversation context across multiple interactions
 

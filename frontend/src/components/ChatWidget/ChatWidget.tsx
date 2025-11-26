@@ -9,15 +9,29 @@ import { apiClient } from '../../utils/api';
 interface ChatWidgetProps {
   onCaptureSnapshot: () => DOMSnapshot | null;
   onFiltersUpdate?: (filters: Partial<ProductFilters>) => void;
+  visibleCount?: number;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ onCaptureSnapshot, onFiltersUpdate }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ onCaptureSnapshot, onFiltersUpdate, visibleCount = 0 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(0);
+  const [productMap, setProductMap] = useState<Map<string, string>>(new Map());
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToProduct = (productId: string) => {
+    const productElement = document.querySelector(`[data-product-id="${productId}"]`);
+    if (productElement) {
+      productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Add highlight animation
+      productElement.classList.add('product-highlight');
+      setTimeout(() => {
+        productElement.classList.remove('product-highlight');
+      }, 2000);
+    }
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -45,7 +59,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onCaptureSnapshot, onFil
       // Capture DOM snapshot
       const snapshot = onCaptureSnapshot();
       if (snapshot) {
-        setVisibleCount(snapshot.visible_products.length);
+        // Build product name to ID map for click-to-scroll
+        const newProductMap = new Map<string, string>();
+        snapshot.visible_products.forEach(p => newProductMap.set(p.name, p.id));
+        snapshot.below_fold_products?.forEach(p => newProductMap.set(p.name, p.id));
+        setProductMap(newProductMap);
       }
 
       // Send to API
@@ -131,7 +149,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onCaptureSnapshot, onFil
             )}
 
             {messages.map((msg, idx) => (
-              <ChatMessageComponent key={idx} message={msg} />
+              <ChatMessageComponent key={idx} message={msg} onProductClick={scrollToProduct} productMap={productMap} />
             ))}
 
             {isLoading && (

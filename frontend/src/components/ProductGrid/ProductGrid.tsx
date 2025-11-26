@@ -48,9 +48,18 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ onProductElementsChang
   }, [filters]);
 
   useEffect(() => {
+    // Clear old refs before products change
+    productRefs.current.clear();
+  }, [filters]);
+
+  useEffect(() => {
     // Notify parent of product elements for observation
-    const elements = Array.from(productRefs.current.values());
-    onProductElementsChange(elements, products);
+    // Use a small delay to ensure DOM is fully rendered
+    const timeoutId = setTimeout(() => {
+      const elements = Array.from(productRefs.current.values());
+      onProductElementsChange(elements, products);
+    }, 100);
+    return () => clearTimeout(timeoutId);
   }, [products, onProductElementsChange]);
 
   const loadProducts = async () => {

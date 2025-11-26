@@ -50,6 +50,15 @@ export interface DOMSnapshot {
     description?: string;
     visible: boolean;
   }>;
+  below_fold_products: Array<{
+    id: string;
+    name: string;
+    category: string;
+    price: number;
+    discount?: number;
+    description?: string;
+    visible: boolean;
+  }>;
   page_url: string;
   timestamp: number;
 }

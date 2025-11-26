@@ -94,6 +94,7 @@
   padding: 10px 14px;
   border-radius: 16px;
   word-wrap: break-word;
+  font-size: 0.85em;
 }
 
 /* Markdown formatting styles */
@@ -118,7 +119,7 @@
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .message-bubble pre {
@@ -149,15 +150,30 @@
 }
 
 .message-bubble h1 {
-  font-size: 1.3em;
+  font-size: 1.15em;
 }
 
 .message-bubble h2 {
-  font-size: 1.2em;
+  font-size: 1.05em;
 }
 
 .message-bubble h3 {
-  font-size: 1.1em;
+  font-size: 1em;
+}
+
+/* Clickable product links in chat messages */
+.product-link {
+  cursor: pointer;
+  color: #667eea;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.product-link:hover {
+  color: #764ba2;
+  text-decoration-style: solid;
 }
 
 .chat-message.user .message-bubble {

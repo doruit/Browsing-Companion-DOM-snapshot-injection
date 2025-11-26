@@ -8,9 +8,11 @@ import { Product, ProductFilters } from '../../types';
 export const Shop: React.FC = () => {
   const domCaptureRef = useRef<DOMCaptureService | null>(null);
   const [chatbotFilters, setChatbotFilters] = useState<Partial<ProductFilters>>({});
+  const [visibleCount, setVisibleCount] = useState(0);
 
   useEffect(() => {
     domCaptureRef.current = new DOMCaptureService();
+    domCaptureRef.current.setOnVisibilityChange(setVisibleCount);
 
     return () => {
       domCaptureRef.current?.disconnect();
@@ -20,6 +22,7 @@ export const Shop: React.FC = () => {
   const handleProductElementsChange = (elements: HTMLElement[], products: Product[]) => {
     if (domCaptureRef.current) {
       domCaptureRef.current.disconnect();
+      domCaptureRef.current.setOnVisibilityChange(setVisibleCount);
       domCaptureRef.current.observeProducts(elements, products);
     }
   };
@@ -42,6 +45,7 @@ export const Shop: React.FC = () => {
       <ChatWidget 
         onCaptureSnapshot={handleCaptureSnapshot}
         onFiltersUpdate={handleFiltersFromChat}
+        visibleCount={visibleCount}
       />
     </div>
   );

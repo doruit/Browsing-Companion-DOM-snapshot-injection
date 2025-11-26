@@ -73,6 +73,7 @@ async def process_chat(request: ChatRequest):
     
     The DOM snapshot should contain:
     - visible_products: List of products visible in viewport
+    - below_fold_products: List of products below the fold (require scrolling)
     - page_url: Current page URL
     - timestamp: Snapshot timestamp
     """
