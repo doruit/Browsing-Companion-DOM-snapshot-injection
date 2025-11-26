@@ -4,6 +4,26 @@ A context-aware chatbot demo for e-commerce that "sees" what the user is viewing
 
 > ⚠️ **Note**: This is a demo/proof-of-concept project. There may be bugs, issues, or areas for improvement. **Feedback, pull requests, and contributions of any kind are highly appreciated!** Feel free to open issues or submit PRs.
 
+## 📑 Table of Contents
+
+- [🎯 Overview](#-overview)
+- [🏗️ Architecture](#️-architecture)
+- [📋 Prerequisites](#-prerequisites)
+- [🚀 Quick Start](#-quick-start)
+- [🔧 Troubleshooting Setup Issues](#-troubleshooting-setup-issues)
+- [🎮 Using the Demo](#-using-the-demo)
+- [✨ Key Features Demonstrated](#-key-features-demonstrated)
+- [🏛️ Implementation Approach](#️-implementation-approach)
+- [📁 Project Structure](#-project-structure)
+- [🔧 Configuration](#-configuration)
+- [🧪 Development](#-development)
+- [🧹 Cleanup](#-cleanup)
+- [🐛 Troubleshooting](#-troubleshooting)
+- [📚 Learn More](#-learn-more)
+- [🤖 Development Notes](#-development-notes)
+- [📄 License](#-license)
+- [🤝 Contributing](#-contributing)
+
 ## 🎯 Overview
 
 This project demonstrates a shoe e-commerce website where an AI chatbot assistant can:
