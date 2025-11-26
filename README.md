@@ -10,6 +10,9 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 - Answer questions about visible products using context from DOM snapshots
 - Maintain conversation history and user preferences
 
+![Smart Shopping Companion Demo](docs/images/smart-shopping-companion.jpg.png)
+*Live demo showing the AI chatbot filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
+
 ## 🏗️ Architecture
 
 ```
@@ -172,9 +175,11 @@ Navigate to **http://localhost:3000** in your browser.
 
 The AI can see which products are currently visible in your viewport!
 
-### 🎯 What the Demo Shows
+### 🎯 Live Demo Screenshot
 
-**Key Capabilities:**
+![Smart Shopping Companion in Action](docs/images/smart-shopping-companion.jpg.png)
+
+**What you're seeing:**
 - **Real-time Context Awareness**: The chatbot sees 8 products currently visible on screen
 - **Natural Language Filters**: User asks "filter on shoes between 50 and 120 dollar" and the AI automatically applies price range filters
 - **Visual Feedback**: Filter bar updates to show $50-$120 range

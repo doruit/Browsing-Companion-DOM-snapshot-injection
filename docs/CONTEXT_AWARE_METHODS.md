@@ -409,7 +409,7 @@ This **Smart Shopping Companion repository** demonstrates **Method 1** - the sim
 
 *For implementation details of Method 1 (this repository), see:*
 - `README.md` - Project overview and setup
-- `FILTER_IMPLEMENTATION.md` - Filter system details
+- `docs/FILTER_IMPLEMENTATION.md` - Filter system details
 - `frontend/src/utils/domCapture.ts` - DOM snapshot implementation
 - `services/ai-service/services/chat_service.py` - AI context handling
 
