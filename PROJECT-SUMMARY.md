@@ -11,10 +11,10 @@ All 6 tasks from the implementation plan have been successfully completed.
 
 - ✅ `main.bicep` - Subscription-level orchestration
 - ✅ `modules/ai-foundry.bicep` - Microsoft Foundry Hub & Project (@2024-04-01)
-- ✅ `modules/openai.bicep` - Azure OpenAI with GPT-5 (@2024-10-01)
+- ✅ `modules/openai.bicep` - Azure OpenAI with GPT-5 (@2025-09-01)
 - ✅ `modules/cosmos-db.bicep` - Serverless Cosmos DB (@2024-05-15)
-- ✅ `modules/storage.bicep` - Blob Storage (@2023-05-01)
-- ✅ `modules/key-vault.bicep` - Key Vault with RBAC (@2023-07-01)
+- ✅ `modules/storage.bicep` - Blob Storage (@2025-06-01)
+- ✅ `modules/key-vault.bicep` - Key Vault with RBAC (@2025-05-01)
 - ✅ `modules/app-insights.bicep` - Application Insights
 - ✅ `modules/secrets.bicep` - Secret management
 - ✅ `parameters/dev.bicepparam` - Environment parameters

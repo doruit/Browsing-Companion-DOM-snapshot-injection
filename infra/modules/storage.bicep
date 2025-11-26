@@ -5,7 +5,7 @@ param location string
 @maxLength(24)
 param storageAccountName string
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2025-06-01' = {
   name: storageAccountName
   location: location
   kind: 'StorageV2'
@@ -22,14 +22,14 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
 }
 
 // Blob service
-resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2025-01-01' = {
+resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2025-06-01' = {
   parent: storageAccount
   name: 'default'
 }
 
 // Container for DOM snapshots
-resource snapshotsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2025-01-01' = {
-  parent: blobService
+resource snapshotsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2025-06-01' = {
+  parent: blobServices
   name: 'dom-snapshots'
   properties: {
     publicAccess: 'None'

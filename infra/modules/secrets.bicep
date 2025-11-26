@@ -16,11 +16,11 @@ param openaiKey string
 @secure()
 param storageConnectionString string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
   name: keyVaultName
 }
 
-resource cosmosSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+resource cosmosSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'cosmos-connection-string'
   properties: {
@@ -28,7 +28,7 @@ resource cosmosSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   }
 }
 
-resource openaiEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+resource openaiEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'openai-endpoint'
   properties: {
@@ -36,7 +36,7 @@ resource openaiEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   }
 }
 
-resource openaiKeySecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+resource openaiKeySecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'openai-api-key'
   properties: {
@@ -44,7 +44,7 @@ resource openaiKeySecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   }
 }
 
-resource storageSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+resource storageSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'storage-connection-string'
   properties: {

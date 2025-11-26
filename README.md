@@ -1,6 +1,6 @@
 # Browsing Companion - DOM Snapshot Injection Demo
 
-A context-aware chatbot demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Azure AI Foundry.
+A context-aware chatbot demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Foundry.
 
 ## 🎯 Overview
 
