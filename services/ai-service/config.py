@@ -1,5 +1,26 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
+import logging
+
+
+# Configure logging to sanitize sensitive data
+class SensitiveDataFilter(logging.Filter):
+    """Filter to prevent logging of sensitive information"""
+    SENSITIVE_PATTERNS = [
+        'api_key', 'apikey', 'key=', 'password', 'secret', 'token',
+        'AccountKey=', 'InstrumentationKey=', 'connection_string'
+    ]
+    
+    def filter(self, record):
+        msg = str(record.msg).lower()
+        # Block any log message containing sensitive patterns
+        return not any(pattern.lower() in msg for pattern in self.SENSITIVE_PATTERNS)
+
+
+# Apply filter to all loggers
+logging.basicConfig(level=logging.INFO)
+for handler in logging.root.handlers:
+    handler.addFilter(SensitiveDataFilter())
 
 
 class Settings(BaseSettings):
