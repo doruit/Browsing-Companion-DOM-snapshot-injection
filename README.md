@@ -48,6 +48,25 @@ Before you begin, ensure you have:
 4. **Python** 3.11+ and pip ([Download](https://www.python.org/))
 5. **Git** for cloning the repository
 
+### Setup Flow Overview
+
+```
+1. Clone Repo          2. Azure Setup         3. Local Setup         4. Run Services
+   │                      │                      │                      │
+   ├─ Source code        ├─ az login            ├─ Python venv         ├─ Terminal 1:
+   ├─ Scripts            ├─ deploy.sh           ├─ pip install         │  AI Service (8000)
+   └─ Documentation      ├─ setup-env.sh        ├─ npm install (x2)    ├─ Terminal 2:
+                         │                      └─ .env.local files    │  API Gateway (3001)
+                         └─ Azure Resources                            └─ Terminal 3:
+                            created (~10 min)                             Frontend (3000)
+```
+
+**Time breakdown:**
+- Azure deployment: ~10-15 minutes
+- Environment setup: ~3-5 minutes
+- Package installation: ~3-5 minutes
+- **Total**: ~20-25 minutes from clone to running application
+
 ## 🚀 Quick Start
 
 ### 1. Clone the Repository
@@ -56,6 +75,20 @@ Before you begin, ensure you have:
 git clone https://github.com/doruit/Browsing-Companion-DOM-snapshot-injection.git
 cd Browsing-Companion-DOM-snapshot-injection
 ```
+
+**What you get:**
+- Complete source code for all three services
+- Deployment scripts for Azure infrastructure
+- Sample product data and images
+- **NOT included**: `node_modules/`, `venv/`, `.env.local` files (you'll create these in the next steps)
+
+**⚠️ Important**: The repository does NOT contain:
+- Third-party packages (`node_modules/`, Python packages) - you'll install these
+- Environment configuration files (`.env.local`) - you'll generate these from Azure
+- Virtual environments (`venv/`) - you'll create these locally
+- Azure credentials or secrets - these come from your Azure deployment
+
+This is by design for security and best practices. Never commit dependencies or secrets to version control.
 
 ### 2. Login to Azure
 
@@ -105,30 +138,140 @@ This script will:
 - Retrieve secrets from Key Vault using your Azure CLI credentials
 - Create `.env.local` files for all three services
 
-### 5. Install Dependencies
+### 5. Install Dependencies and Setup Environments
 
-**Python AI Service:**
+#### Python AI Service
+
+1. **Create Python Virtual Environment** (isolates dependencies):
 ```bash
 cd services/ai-service
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. **Activate the Virtual Environment**:
+```bash
+# macOS/Linux:
+source venv/bin/activate
+
+# Windows:
+venv\Scripts\activate
+```
+
+3. **Install Python Packages** (from requirements.txt):
+```bash
 pip install -r requirements.txt
+```
+
+**Packages installed include:**
+- `fastapi` - Modern web framework for Python APIs
+- `uvicorn` - ASGI server for FastAPI
+- `azure-cosmos` - Azure Cosmos DB client
+- `azure-storage-blob` - Azure Blob Storage client
+- `openai` - OpenAI Python SDK (works with Azure OpenAI)
+- `python-dotenv` - Environment variable management
+
+4. **Return to project root**:
+```bash
 cd ../..
 ```
 
-**Node.js API Gateway:**
+#### Node.js API Gateway
+
+1. **Navigate to API Gateway**:
 ```bash
 cd services/api-gateway
+```
+
+2. **Install Node.js Dependencies** (from package.json):
+```bash
 npm install
+```
+
+**Packages installed include:**
+- `express` - Web framework for Node.js
+- `cors` - Cross-origin resource sharing middleware
+- `dotenv` - Environment variable management
+- `axios` - HTTP client for API requests
+- `jsonwebtoken` - JWT token handling
+- `nodemon` - Auto-restart during development
+
+3. **Return to project root**:
+```bash
 cd ../..
 ```
 
-**React Frontend:**
+#### React Frontend
+
+1. **Navigate to Frontend**:
 ```bash
 cd frontend
+```
+
+2. **Install Node.js Dependencies** (from package.json):
+```bash
 npm install
+```
+
+**Packages installed include:**
+- `react` & `react-dom` - React framework (v18)
+- `typescript` - TypeScript language support
+- `vite` - Fast build tool and dev server
+- `react-markdown` & `remark-gfm` - Markdown rendering in chat
+- `lucide-react` - Icon library
+- Development tools (ESLint, Tailwind CSS, etc.)
+
+3. **Return to project root**:
+```bash
 cd ..
 ```
+
+**✅ Verification**: After installation, you should have:
+- `services/ai-service/venv/` directory with Python packages
+- `services/api-gateway/node_modules/` directory with Node packages
+- `frontend/node_modules/` directory with React packages
+- Total installation time: ~3-5 minutes depending on internet speed
+
+**Quick verification commands:**
+```bash
+# Verify Python packages installed
+cd services/ai-service
+source venv/bin/activate
+pip list | grep -E "fastapi|uvicorn|azure|openai"
+cd ../..
+
+# Verify Node.js packages installed
+cd services/api-gateway
+npm list --depth=0
+cd ../..
+
+cd frontend
+npm list --depth=0
+cd ..
+```
+
+**Expected directory structure after setup:**
+```
+Browsing-Companion-DOM-snapshot-injection/
+├── services/
+│   ├── ai-service/
+│   │   ├── venv/                    # ✅ Created (git-ignored)
+│   │   ├── .env.local               # ✅ Created (git-ignored)
+│   │   ├── requirements.txt         # ✓ From repo
+│   │   └── main.py                  # ✓ From repo
+│   └── api-gateway/
+│       ├── node_modules/            # ✅ Created (git-ignored)
+│       ├── .env.local               # ✅ Created (git-ignored)
+│       ├── package.json             # ✓ From repo
+│       └── server.js                # ✓ From repo
+├── frontend/
+│   ├── node_modules/                # ✅ Created (git-ignored)
+│   ├── .env.local                   # ✅ Created (git-ignored)
+│   ├── package.json                 # ✓ From repo
+│   └── src/                         # ✓ From repo
+└── deployment-outputs.json          # ✅ Created during deployment
+```
+
+**⚠️ Note**: The `node_modules/` and `venv/` directories are git-ignored and should never be committed to version control. Always run `npm install` or `pip install -r requirements.txt` after cloning the repository.
 
 ### 6. Start the Services
 
@@ -160,6 +303,158 @@ Navigate to **http://localhost:3000** in your browser.
 **Demo Credentials:**
 - User 1: `user1@example.com` / `password` (B2C, likes Running shoes)
 - User 2: `user2@example.com` / `password` (B2B, bulk orders)
+
+## 🔧 Troubleshooting Setup Issues
+
+### Python Environment Issues
+
+**Problem**: `python: command not found` or `python3: command not found`
+```bash
+# Solution: Check if Python is installed
+python --version  # or python3 --version
+
+# macOS: Install via Homebrew
+brew install python@3.11
+
+# Windows: Download from https://www.python.org/downloads/
+# Linux (Ubuntu/Debian): 
+sudo apt update && sudo apt install python3.11 python3.11-venv
+```
+
+**Problem**: Virtual environment not activating
+```bash
+# If "source venv/bin/activate" fails, try:
+. venv/bin/activate
+
+# Windows PowerShell (if restricted):
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+venv\Scripts\Activate.ps1
+```
+
+**Problem**: `pip install` fails with permission errors
+```bash
+# Solution: Ensure virtual environment is activated
+# Your prompt should show (venv) at the beginning
+# If not, run: source venv/bin/activate
+
+# Never use sudo with pip inside a virtual environment
+```
+
+### Node.js Environment Issues
+
+**Problem**: `npm: command not found`
+```bash
+# Solution: Install Node.js
+# macOS: 
+brew install node
+
+# Windows: Download from https://nodejs.org/
+# Linux (Ubuntu/Debian):
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+**Problem**: `npm install` fails with EACCES errors
+```bash
+# Solution: Fix npm permissions (don't use sudo!)
+# macOS/Linux:
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**Problem**: Port already in use (EADDRINUSE)
+```bash
+# Find process using the port (e.g., 3000, 3001, or 8000):
+# macOS/Linux:
+lsof -i :3000
+kill -9 <PID>
+
+# Windows:
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+### Environment File Issues
+
+**Problem**: Services start but can't connect to Azure
+```bash
+# Solution 1: Verify .env.local files exist
+ls -la services/ai-service/.env.local
+ls -la services/api-gateway/.env.local
+ls -la frontend/.env.local
+
+# Solution 2: Re-run environment setup
+./scripts/setup-env.sh
+
+# Solution 3: Check Azure CLI login
+az account show
+```
+
+**Problem**: Missing deployment-outputs.json
+```bash
+# This file is created during deployment
+# If missing, you need to redeploy:
+./scripts/deploy.sh
+```
+
+### Service Startup Issues
+
+**Problem**: Python service fails with import errors
+```bash
+# Ensure you're in the virtual environment
+cd services/ai-service
+source venv/bin/activate  # Should show (venv) in prompt
+pip list  # Verify packages are installed
+pip install -r requirements.txt --force-reinstall
+```
+
+**Problem**: Frontend shows blank page
+```bash
+# Check browser console (F12) for errors
+# Common issues:
+# 1. API Gateway not running (check http://localhost:3001/health)
+# 2. CORS errors (ensure all services started in correct order)
+# 3. .env.local missing in frontend/
+```
+
+**Problem**: Chat doesn't respond
+```bash
+# Verify all three services are running:
+curl http://localhost:8000/health     # Python AI Service
+curl http://localhost:3001/health     # Node.js Gateway
+curl http://localhost:3000            # React Frontend
+
+# Check logs in each terminal for error messages
+```
+
+### Quick Reset
+
+If everything seems broken, try a fresh start:
+```bash
+# Stop all services (Ctrl+C in all terminals)
+
+# Clean and reinstall dependencies
+cd services/ai-service
+rm -rf venv
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cd ../..
+
+cd services/api-gateway
+rm -rf node_modules package-lock.json
+npm install
+cd ../..
+
+cd frontend
+rm -rf node_modules package-lock.json
+npm install
+cd ..
+
+# Restart all services in separate terminals
+```
 
 ## 🎮 Using the Demo
 
