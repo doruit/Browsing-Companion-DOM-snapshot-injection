@@ -326,3 +326,5 @@ INFO:     127.0.0.1:56637 - "GET /utility/recipe-images/random?count=10&t=176417
 INFO:     127.0.0.1:56981 - "GET /utility/recipe-images/random?count=10&t=1764170638945 HTTP/1.1" 404 Not Found
 INFO:     127.0.0.1:57685 - "GET /utility/recipe-images/random?count=10&t=1764170698958 HTTP/1.1" 404 Not Found
 INFO:     127.0.0.1:58260 - "GET /utility/recipe-images/random?count=10&t=1764170758938 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58706 - "GET /utility/recipe-images/random?count=10&t=1764170818959 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59069 - "GET /utility/recipe-images/random?count=10&t=1764170878924 HTTP/1.1" 404 Not Found
