@@ -67,7 +67,7 @@ class ScreenshotProvider(ContextProvider):
     
     async def get_context(self, data: Dict[str, Any]) -> str:
         """Extract context from screenshots using GPT-4 Vision"""
-        # TODO: Implement screenshot analysis with GPT-4o vision
+        # TODO: Implement screenshot analysis with GPT-5 vision
         return "Screenshot analysis not yet implemented."
 
 

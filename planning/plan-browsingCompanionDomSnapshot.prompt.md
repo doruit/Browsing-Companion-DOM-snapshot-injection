@@ -4,11 +4,11 @@ Build a functional demo of a shoe e-commerce site with an AI chatbot that can "s
 
 ## Steps
 
-1. **Create Bicep infrastructure templates with latest APIs** — Build `/infra` folder with: `main.bicep` (subscription-level orchestration), `modules/ai-foundry.bicep` (Microsoft Foundry hub/project `@2024-04-01`), `modules/openai.bicep` (GPT-4o deployment `@2025-10-01-preview`), `modules/cosmos-db.bicep` (serverless Cosmos DB `@2024-05-15`), `modules/storage.bicep` (`@2025-06-01`), `modules/key-vault.bicep` (secrets); include `parameters/dev.bicepparam` with configurable resource names and location
+1. **Create Bicep infrastructure templates with latest APIs** — Build `/infra` folder with: `main.bicep` (subscription-level orchestration), `modules/ai-foundry.bicep` (Microsoft Foundry hub/project `@2024-04-01`), `modules/openai.bicep` (GPT-5 deployment `@2025-10-01-preview`), `modules/cosmos-db.bicep` (serverless Cosmos DB `@2024-05-15`), `modules/storage.bicep` (`@2025-06-01`), `modules/key-vault.bicep` (secrets); include `parameters/dev.bicepparam` with configurable resource names and location
 
 2. **Add deployment automation and documentation** — Create `/scripts/deploy.sh` (Azure CLI deployment script), `/scripts/setup-env.sh` (extracts outputs to `.env.local` files for local dev), comprehensive `/README.md` (prerequisites: Azure subscription, Azure CLI installed; step-by-step: clone repo → login → run deploy.sh → run setup-env.sh → start services); include `.env.example` files in each service folder
 
-3. **Build Python AI service** — Create FastAPI in `/services/ai-service` with endpoints: `/process-chat` (DOM snapshot + message → Foundry GPT-4o), `/analyze-preferences` (recommendation logic); use `azure-ai-inference`, `azure-cosmos`, `azure-identity` SDKs; read config from environment (Foundry endpoint, Cosmos connection string from Key Vault); include `requirements.txt`, `Dockerfile`, startup script
+3. **Build Python AI service** — Create FastAPI in `/services/ai-service` with endpoints: `/process-chat` (DOM snapshot + message → Foundry GPT-5), `/analyze-preferences` (recommendation logic); use `azure-ai-inference`, `azure-cosmos`, `azure-identity` SDKs; read config from environment (Foundry endpoint, Cosmos connection string from Key Vault); include `requirements.txt`, `Dockerfile`, startup script
 
 4. **Build Node.js API gateway** — Create Express.js in `/services/api-gateway` with: `/api/chat` (validates request, proxies to Python AI service), `/api/products` (returns filtered product list from JSON file), `/api/preferences` (CRUD to Cosmos DB via Python service), simple JWT auth (mock tokens for demo); include `package.json`, health check endpoint, CORS config for local dev
 

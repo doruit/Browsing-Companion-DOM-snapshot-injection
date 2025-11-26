@@ -17,7 +17,7 @@ fi
 # Check if logged in
 echo "📋 Checking Azure CLI login status..."
 az account show &> /dev/null || {
-    echo "❌ Not logged in to Azure. Please run: az login"
+    echo "❌ Not logged in to Azure. Please run: az login --use-device-code"
     exit 1
 }
 

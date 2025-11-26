@@ -1,8 +1,8 @@
 @description('Azure region for AI Foundry resources')
 param location string
 
-@description('Name of the AI Foundry hub')
-param hubName string
+@description('Name of the AI Foundry workspace')
+param foundryName string
 
 @description('Name of the AI Foundry project')
 param projectName string
@@ -19,17 +19,17 @@ param appInsightsId string
 @description('Resource ID of the Azure OpenAI account')
 param openAiId string
 
-// AI Foundry Hub
-resource aiHub 'Microsoft.MachineLearningServices/workspaces@2024-04-01' = {
-  name: hubName
+// AI Foundry Workspace (formerly Hub)
+resource aiFoundry 'Microsoft.MachineLearningServices/workspaces@2024-10-01' = {
+  name: foundryName
   location: location
-  kind: 'Hub'
+  kind: 'AIServices'
   identity: {
     type: 'SystemAssigned'
   }
   properties: {
-    friendlyName: hubName
-    description: 'AI Foundry Hub for Browsing Companion'
+    friendlyName: foundryName
+    description: 'AI Foundry Workspace for Browsing Companion'
     storageAccount: storageAccountId
     keyVault: keyVaultId
     applicationInsights: appInsightsId
@@ -38,7 +38,7 @@ resource aiHub 'Microsoft.MachineLearningServices/workspaces@2024-04-01' = {
 }
 
 // AI Foundry Project
-resource aiProject 'Microsoft.MachineLearningServices/workspaces@2024-04-01' = {
+resource aiProject 'Microsoft.MachineLearningServices/workspaces@2024-10-01' = {
   name: projectName
   location: location
   kind: 'Project'
@@ -48,13 +48,13 @@ resource aiProject 'Microsoft.MachineLearningServices/workspaces@2024-04-01' = {
   properties: {
     friendlyName: projectName
     description: 'AI Foundry Project for Browsing Companion'
-    hubResourceId: aiHub.id
+    hubResourceId: aiFoundry.id
   }
 }
 
 // Connection to Azure OpenAI
-resource openAiConnection 'Microsoft.MachineLearningServices/workspaces/connections@2024-04-01' = {
-  parent: aiHub
+resource openAiConnection 'Microsoft.MachineLearningServices/workspaces/connections@2024-10-01' = {
+  parent: aiFoundry
   name: 'aoai-connection'
   properties: {
     category: 'AzureOpenAI'
@@ -63,9 +63,9 @@ resource openAiConnection 'Microsoft.MachineLearningServices/workspaces/connecti
   }
 }
 
-output hubId string = aiHub.id
-output hubName string = aiHub.name
+output foundryId string = aiFoundry.id
+output foundryName string = aiFoundry.name
 output projectId string = aiProject.id
 output projectName string = aiProject.name
-output hubPrincipalId string = aiHub.identity.principalId
+output foundryPrincipalId string = aiFoundry.identity.principalId
 output projectPrincipalId string = aiProject.identity.principalId

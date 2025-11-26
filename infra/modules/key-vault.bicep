@@ -10,7 +10,7 @@ param tenantId string
 @description('Object ID of the user/service principal to grant access')
 param principalId string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
   name: keyVaultName
   location: location
   properties: {

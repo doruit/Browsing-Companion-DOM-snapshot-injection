@@ -15,7 +15,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────────────┐
 │   React     │────▶│   Node.js    │────▶│   Python    │────▶│  Azure OpenAI    │
-│   Frontend  │     │   Gateway    │     │  AI Service │     │  (GPT-4o)        │
+│   Frontend  │     │   Gateway    │     │  AI Service │     │  (GPT-5)         │
 │  (Port 3000)│     │  (Port 3001) │     │ (Port 8000) │     │                  │
 └─────────────┘     └──────────────┘     └─────────────┘     └──────────────────┘
        │                    │                     │
@@ -29,7 +29,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 - **Frontend**: React 18 + TypeScript + Vite
 - **API Gateway**: Node.js + Express
 - **AI Service**: Python + FastAPI
-- **AI Platform**: Microsoft Foundry + Azure OpenAI (GPT-4o)
+- **AI Platform**: Microsoft Foundry + Azure OpenAI (GPT-5)
 - **Database**: Azure Cosmos DB (serverless)
 - **Storage**: Azure Blob Storage
 - **Infrastructure**: Azure Bicep (latest API versions)
@@ -38,8 +38,8 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 
 Before you begin, ensure you have:
 
-1. **Azure Subscription** with permissions to create resources
-2. **Azure CLI** installed ([Installation Guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
+1. **Azure CLI** installed and logged in ([Installation Guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
+2. **Azure Subscription** with permissions to create resources
 3. **Node.js** v18+ and npm ([Download](https://nodejs.org/))
 4. **Python** 3.11+ and pip ([Download](https://www.python.org/))
 5. **Git** for cloning the repository
@@ -56,8 +56,13 @@ cd Browsing-Companion-DOM-snapshot-injection
 ### 2. Login to Azure
 
 ```bash
-az login
-# If you have multiple subscriptions, set the desired one:
+# Login using device code (recommended for remote/headless environments)
+az login --use-device-code
+
+# Check current subscription
+az account show
+
+# If you need to switch subscriptions:
 # az account set --subscription <subscription-id>
 ```
 
@@ -71,8 +76,8 @@ This will create all required Azure resources (OpenAI, Cosmos DB, Storage, etc.)
 
 The deployment takes approximately 10-15 minutes. Resources created:
 - Resource Group
-- Azure OpenAI with GPT-4o deployment
-- Microsoft Foundry Hub and Project
+- Azure OpenAI with GPT-5 deployment
+- Microsoft Foundry Workspace and Project (latest resource types)
 - Cosmos DB (serverless) with containers
 - Azure Storage with blob container
 - Key Vault for secrets
@@ -85,13 +90,16 @@ The deployment takes approximately 10-15 minutes. Resources created:
 
 ### 4. Configure Local Environment
 
-Extract deployment outputs and create `.env.local` files:
+Extract deployment outputs and create `.env.local` files (uses your existing Azure CLI session):
 
 ```bash
 ./scripts/setup-env.sh
 ```
 
-This creates environment files for all three services with connection strings and API keys from Azure.
+This script will:
+- Read deployment outputs from `deployment-outputs.json`
+- Retrieve secrets from Key Vault using your Azure CLI credentials
+- Create `.env.local` files for all three services
 
 ### 5. Install Dependencies
 

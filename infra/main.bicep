@@ -78,13 +78,13 @@ module appInsights 'modules/app-insights.bicep' = {
   }
 }
 
-// AI Foundry Hub and Project
+// AI Foundry Workspace and Project
 module aiFoundry 'modules/ai-foundry.bicep' = {
   scope: rg
   name: 'aifoundry-deployment'
   params: {
     location: location
-    hubName: 'aihub-${baseName}-${environment}'
+    foundryName: 'foundry-${baseName}-${environment}'
     projectName: 'aiproject-${baseName}-${environment}'
     storageAccountId: storage.outputs.storageAccountId
     keyVaultId: keyVault.outputs.keyVaultId
@@ -117,6 +117,6 @@ output cosmosEndpoint string = cosmosDb.outputs.endpoint
 output openaiEndpoint string = openai.outputs.endpoint
 output openaiDeploymentName string = openai.outputs.deploymentName
 output storageAccountName string = storage.outputs.storageAccountName
-output aiHubName string = aiFoundry.outputs.hubName
+output aiFoundryName string = aiFoundry.outputs.foundryName
 output aiProjectName string = aiFoundry.outputs.projectName
 output appInsightsConnectionString string = appInsights.outputs.connectionString
