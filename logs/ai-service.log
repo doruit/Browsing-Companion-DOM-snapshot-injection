@@ -1,331 +1,112 @@
 INFO:     Will watch for changes in these directories: ['/Users/doruit/Browsing-Companion-DOM-snapshot-injection/services/ai-service']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [92283] using WatchFiles
-INFO:     Started server process [92347]
+INFO:     Started reloader process [19488] using WatchFiles
+INFO:     Started server process [19559]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-OpenAI Response: ChatCompletion(id='chatcmpl-CgB6ztSjyMFppYXC7UTcGvjtnjmmK', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen:\n\n1. **Classic Leather Oxford**\n   - Price: `$129.99`\n   - Category: Formal\n   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions\n\n2. **Air Cushion Running Shoes**\n   - Price: `$89.99`\n   - Category: Athletic\n   - ✨ Lightweight running shoes with advanced air cushioning technology\n   - 💰 Discount: 15% off\n\n3. **Professional Safety Boots**\n   - Price: `$159.99`\n   - Category: Work\n   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection\n   - 💰 Discount: 20% off\n\n4. **Canvas Low-Top Sneakers**\n   - Price: `$49.99`\n   - Category: Casual\n   - ✨ Comfortable canvas sneakers for everyday casual wear\n\n5. **Premium Hiking Boots**\n   - Price: `$199.99`\n   - Category: Outdoor\n   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails\n   - 💰 Discount: 10% off\n\n6. **Ballet Flat Comfort**\n   - Price: `$59.99`\n   - Category: Casual\n   - ✨ Elegant ballet flats with memory foam insole for all-day comfort\n\n---\n\nIf you have any specific questions about these products or if you need help finding something else, feel free to ask! 😊', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764168525, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=304, prompt_tokens=793, total_tokens=1097, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ## 👟 Products I Can See
+INFO:     127.0.0.1:62561 - "GET /utility/recipe-images/random?count=10&t=1764180689685 HTTP/1.1" 404 Not Found
+Error fetching preferences: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/test
+wed, 26 nov 2025 18:11:29 gmt
 
-Here are the shoes currently visible on your screen:
+'
+ActivityId: 6630726b-7e7a-4de1-a2df-182e16820d01, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/test
+wed, 26 nov 2025 18:11:29 gmt
 
-1. **Classic Leather Oxford**
-   - Price: `$129.99`
-   - Category: Formal
-   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions
+'
+ActivityId: 6630726b-7e7a-4de1-a2df-182e16820d01, Microsoft.Azure.Documents.Common/2.14.0
+OpenAI Response: ChatCompletion(id='chatcmpl-CgEHD21eoC3xMfhS2NInQL7gLnRHr', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='## 👋 Hello There!\n\nWelcome to your Smart Shopping Companion! How can I assist you today? Are you looking for specific shoes, or do you have any preferences in mind? 👟✨', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764180691, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=40, prompt_tokens=521, total_tokens=561, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
+Assistant message: ## 👋 Hello There!
 
-2. **Air Cushion Running Shoes**
-   - Price: `$89.99`
-   - Category: Athletic
-   - ✨ Lightweight running shoes with advanced air cushioning technology
-   - 💰 Discount: 15% off
-
-3. **Professional Safety Boots**
-   - Price: `$159.99`
-   - Category: Work
-   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection
-   - 💰 Discount: 20% off
-
-4. **Canvas Low-Top Sneakers**
-   - Price: `$49.99`
-   - Category: Casual
-   - ✨ Comfortable canvas sneakers for everyday casual wear
-
-5. **Premium Hiking Boots**
-   - Price: `$199.99`
-   - Category: Outdoor
-   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails
-   - 💰 Discount: 10% off
-
-6. **Ballet Flat Comfort**
-   - Price: `$59.99`
-   - Category: Casual
-   - ✨ Elegant ballet flats with memory foam insole for all-day comfort
-
----
-
-If you have any specific questions about these products or if you need help finding something else, feel free to ask! 😊
+Welcome to your Smart Shopping Companion! How can I assist you today? Are you looking for specific shoes, or do you have any preferences in mind? 👟✨
 Message type: <class 'str'>
-INFO:     127.0.0.1:60621 - "POST /process-chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60702 - "GET /utility/recipe-images/random?count=10&t=1764168539028 HTTP/1.1" 404 Not Found
-OpenAI Response: ChatCompletion(id='chatcmpl-CgB7rA0SfOAfvJEs15YI0FNL2jbMZ', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen:\n\n1. **High-Performance Basketball**\n   - Price: `$149.99`\n   - Category: Athletic\n   - 💰 Discount: 25% off\n   - ✨ Professional basketball shoes with responsive cushioning and grip\n\n2. **Dress Loafers Premium**\n   - Price: `$119.99`\n   - Category: Formal\n   - ✨ Slip-on leather loafers combining comfort with sophisticated style\n\n3. **Trail Running Elite**\n   - Price: `$139.99`\n   - Category: Outdoor\n   - 💰 Discount: 15% off\n   - ✨ Rugged trail running shoes designed for off-road performance\n\n4. **Industrial Work Clogs**\n   - Price: `$79.99`\n   - Category: Work\n   - ✨ Slip-resistant work clogs ideal for kitchen and healthcare environments\n\n5. **Fashion Ankle Boots**\n   - Price: `$99.99`\n   - Category: Casual\n   - 💰 Discount: 20% off\n   - ✨ Stylish ankle boots perfect for transitional weather\n\n6. **Executive Wingtip**\n   - Price: `$179.99`\n   - Category: Formal\n   - ✨ Premium wingtip brogues handcrafted from Italian leather\n\n---\n\nIf you're interested in any specific product or need help with filtering options, let me know! 😊", refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764168579, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=295, prompt_tokens=1109, total_tokens=1404, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ## 👟 Products I Can See
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:32 gmt
 
-Here are the shoes currently visible on your screen:
+'
+ActivityId: 7d91a16c-f1d3-40a5-9606-3bb7884b1580, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:32 gmt
 
-1. **High-Performance Basketball**
-   - Price: `$149.99`
-   - Category: Athletic
-   - 💰 Discount: 25% off
-   - ✨ Professional basketball shoes with responsive cushioning and grip
+'
+ActivityId: 7d91a16c-f1d3-40a5-9606-3bb7884b1580, Microsoft.Azure.Documents.Common/2.14.0
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:32 gmt
 
-2. **Dress Loafers Premium**
-   - Price: `$119.99`
-   - Category: Formal
-   - ✨ Slip-on leather loafers combining comfort with sophisticated style
+'
+ActivityId: 0d517037-b2ab-4824-9074-2e1276a237a7, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:32 gmt
 
-3. **Trail Running Elite**
-   - Price: `$139.99`
-   - Category: Outdoor
-   - 💰 Discount: 15% off
-   - ✨ Rugged trail running shoes designed for off-road performance
+'
+ActivityId: 0d517037-b2ab-4824-9074-2e1276a237a7, Microsoft.Azure.Documents.Common/2.14.0
+INFO:     127.0.0.1:62563 - "POST /process-chat HTTP/1.1" 200 OK
+Error fetching preferences: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/test
+wed, 26 nov 2025 18:11:47 gmt
 
-4. **Industrial Work Clogs**
-   - Price: `$79.99`
-   - Category: Work
-   - ✨ Slip-resistant work clogs ideal for kitchen and healthcare environments
+'
+ActivityId: f34cbda1-d66b-4d10-93d1-a755b2e5032c, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+docs
+dbs/browsing-companion-db/colls/preferences/docs/test
+wed, 26 nov 2025 18:11:47 gmt
 
-5. **Fashion Ankle Boots**
-   - Price: `$99.99`
-   - Category: Casual
-   - 💰 Discount: 20% off
-   - ✨ Stylish ankle boots perfect for transitional weather
+'
+ActivityId: f34cbda1-d66b-4d10-93d1-a755b2e5032c, Microsoft.Azure.Documents.Common/2.14.0
+OpenAI Response: ChatCompletion(id='chatcmpl-CgEHURCCGJkYDvZHcE8JAd1rjOFe1', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="## ⚡ Testing Mode\n\nIt seems you're testing the system! If you have any specific questions or need assistance with finding shoes, feel free to let me know! 👟✨\n\n### 🎯 My Recommendation\nJust say the word, and I'll help you find the perfect pair of shoes!", refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764180708, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=60, prompt_tokens=521, total_tokens=581, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
+Assistant message: ## ⚡ Testing Mode
 
-6. **Executive Wingtip**
-   - Price: `$179.99`
-   - Category: Formal
-   - ✨ Premium wingtip brogues handcrafted from Italian leather
-
----
-
-If you're interested in any specific product or need help with filtering options, let me know! 😊
-Message type: <class 'str'>
-INFO:     127.0.0.1:60895 - "POST /process-chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61001 - "GET /utility/recipe-images/random?count=10&t=1764168598955 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:61451 - "GET /utility/recipe-images/random?count=10&t=1764168659036 HTTP/1.1" 404 Not Found
-OpenAI Response: ChatCompletion(id='chatcmpl-CgB9aXVQ1rmMCOA099W12sCKB0puV', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='```filters\n{\n  "category": "empty",\n  "min_price": null,\n  "max_price": null,\n  "has_discount": null,\n  "min_discount": null,\n  "customer_type": "b2b",\n  "in_stock": null\n}\n```\n\n## 🎯 My Recommendation\nI have set the filter to show only B2B shoes. If you have any other preferences or need further assistance, just let me know! 😊', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764168686, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=96, prompt_tokens=1421, total_tokens=1517, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ```filters
-{
-  "category": "empty",
-  "min_price": null,
-  "max_price": null,
-  "has_discount": null,
-  "min_discount": null,
-  "customer_type": "b2b",
-  "in_stock": null
-}
-```
-
-## 🎯 My Recommendation
-I have set the filter to show only B2B shoes. If you have any other preferences or need further assistance, just let me know! 😊
-Message type: <class 'str'>
-INFO:     127.0.0.1:61595 - "POST /process-chat HTTP/1.1" 500 Internal Server Error
-INFO:     127.0.0.1:61829 - "GET /utility/recipe-images/random?count=10&t=1764168718923 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:62686 - "GET /utility/recipe-images/random?count=10&t=1764168778907 HTTP/1.1" 404 Not Found
-WARNING:  WatchFiles detected changes in 'services/chat_service.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [92347]
-INFO:     Started server process [95814]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     127.0.0.1:63253 - "GET /utility/recipe-images/random?count=10&t=1764168838890 HTTP/1.1" 404 Not Found
-OpenAI Response: ChatCompletion(id='chatcmpl-CgBCVNp4jqSVlE3pFfXYWy0cYEpC5', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen:\n\n• **Classic Leather Oxford** - Timeless leather oxford shoes perfect for business meetings and formal occasions  \n  - Price: `$129.99`  \n  - Category: Formal  \n\n• **Air Cushion Running Shoes** - Lightweight running shoes with advanced air cushioning technology  \n  - Price: `$89.99`  \n  - Category: Athletic  \n  - ✨ **Special Offer:** 15% off  \n\n• **Professional Safety Boots** - Steel-toe safety boots meeting OSHA standards for workplace protection  \n  - Price: `$159.99`  \n  - Category: Work  \n  - ✨ **Special Offer:** 20% off  \n\n• **Canvas Low-Top Sneakers** - Comfortable canvas sneakers for everyday casual wear  \n  - Price: `$49.99`  \n  - Category: Casual  \n\n### 🎯 My Recommendation\nBased on your interest in B2B options, the following products could be suitable for business purchases:\n\n- **Professional Safety Boots**: Ideal for workplaces that require safety footwear.  \n- **Classic Leather Oxford**: Great for professional settings.\n\nIf you'd like to filter specifically for B2B products or inquire further, just let me know! 😊", refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764168867, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=258, prompt_tokens=726, total_tokens=984, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ## 👟 Products I Can See
-
-Here are the shoes currently visible on your screen:
-
-• **Classic Leather Oxford** - Timeless leather oxford shoes perfect for business meetings and formal occasions  
-  - Price: `$129.99`  
-  - Category: Formal  
-
-• **Air Cushion Running Shoes** - Lightweight running shoes with advanced air cushioning technology  
-  - Price: `$89.99`  
-  - Category: Athletic  
-  - ✨ **Special Offer:** 15% off  
-
-• **Professional Safety Boots** - Steel-toe safety boots meeting OSHA standards for workplace protection  
-  - Price: `$159.99`  
-  - Category: Work  
-  - ✨ **Special Offer:** 20% off  
-
-• **Canvas Low-Top Sneakers** - Comfortable canvas sneakers for everyday casual wear  
-  - Price: `$49.99`  
-  - Category: Casual  
+It seems you're testing the system! If you have any specific questions or need assistance with finding shoes, feel free to let me know! 👟✨
 
 ### 🎯 My Recommendation
-Based on your interest in B2B options, the following products could be suitable for business purchases:
-
-- **Professional Safety Boots**: Ideal for workplaces that require safety footwear.  
-- **Classic Leather Oxford**: Great for professional settings.
-
-If you'd like to filter specifically for B2B products or inquire further, just let me know! 😊
+Just say the word, and I'll help you find the perfect pair of shoes!
 Message type: <class 'str'>
-INFO:     127.0.0.1:63507 - "POST /process-chat HTTP/1.1" 200 OK
-OpenAI Response: ChatCompletion(id='chatcmpl-CgBCsmrdXnQBXCxVf9mlzbWTPgiOY', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='```filters\n{\n  "category": "empty",\n  "min_price": null,\n  "max_price": null,\n  "has_discount": null,\n  "min_discount": null,\n  "customer_type": "b2b",\n  "in_stock": null\n}\n``` \n\n## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen that are available for B2B:\n\n• **Classic Leather Oxford** - Timeless leather oxford shoes perfect for business meetings and formal occasions  \n  - Price: `$129.99`  \n  - Category: Formal  \n\n• **Professional Safety Boots** - Steel-toe safety boots meeting OSHA standards for workplace protection  \n  - Price: `$159.99`  \n  - ✨ **Special Offer:** 20% off  \n  - Category: Work  \n\n### 🎯 My Recommendation\n- **Professional Safety Boots**: Perfect for workplace safety requirements.\n- **Classic Leather Oxford**: Excellent for formal business events.\n\nIf you need more options or specific details, feel free to ask! 😊', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764168890, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=217, prompt_tokens=996, total_tokens=1213, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ```filters
-{
-  "category": "empty",
-  "min_price": null,
-  "max_price": null,
-  "has_discount": null,
-  "min_discount": null,
-  "customer_type": "b2b",
-  "in_stock": null
-}
-``` 
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:49 gmt
 
-## 👟 Products I Can See
+'
+ActivityId: 7c0054f2-ba9f-406c-8c29-46810e4c6703, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:49 gmt
 
-Here are the shoes currently visible on your screen that are available for B2B:
+'
+ActivityId: 7c0054f2-ba9f-406c-8c29-46810e4c6703, Microsoft.Azure.Documents.Common/2.14.0
+Error storing message: (Unauthorized) The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:49 gmt
 
-• **Classic Leather Oxford** - Timeless leather oxford shoes perfect for business meetings and formal occasions  
-  - Price: `$129.99`  
-  - Category: Formal  
+'
+ActivityId: 2a2a9474-4980-4e54-b2cf-624447fd0d7f, Microsoft.Azure.Documents.Common/2.14.0
+Code: Unauthorized
+Message: The input authorization token can't serve the request. The wrong key is being used or the expected payload is not built as per the protocol. For more info: https://aka.ms/cosmosdb-tsg-unauthorized. Server used the following payload to sign: 'get
+colls
+dbs/browsing-companion-db/colls/chat-sessions
+wed, 26 nov 2025 18:11:49 gmt
 
-• **Professional Safety Boots** - Steel-toe safety boots meeting OSHA standards for workplace protection  
-  - Price: `$159.99`  
-  - ✨ **Special Offer:** 20% off  
-  - Category: Work  
-
-### 🎯 My Recommendation
-- **Professional Safety Boots**: Perfect for workplace safety requirements.
-- **Classic Leather Oxford**: Excellent for formal business events.
-
-If you need more options or specific details, feel free to ask! 😊
-Message type: <class 'str'>
-INFO:     127.0.0.1:63731 - "POST /process-chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63816 - "GET /utility/recipe-images/random?count=10&t=1764168898917 HTTP/1.1" 404 Not Found
-WARNING:  WatchFiles detected changes in 'services/chat_service.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [95814]
-INFO:     Started server process [97235]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     127.0.0.1:64185 - "GET /utility/recipe-images/random?count=10&t=1764168958959 HTTP/1.1" 404 Not Found
-WARNING:  WatchFiles detected changes in 'services/chat_service.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [97235]
-INFO:     Started server process [97338]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-OpenAI Response: ChatCompletion(id='chatcmpl-CgBEgR8baLdBhNFLDBATpJXjZTwZ1', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='```filters\n{\n  "category": "empty",\n  "min_price": 50,\n  "max_price": 120,\n  "has_discount": null,\n  "min_discount": null,\n  "customer_type": "all",\n  "in_stock": true\n}\n```\n\n## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen that are priced between `$50` and `$120`:\n\n• **Canvas Low-Top Sneakers** - Comfortable canvas sneakers for everyday casual wear  \n  - Price: `$49.99`  \n  - Category: Casual  \n\n• **Industrial Work Clogs** - Slip-resistant work clogs ideal for kitchen and healthcare environments  \n  - Price: `$79.99`  \n  - Category: Work  \n\n### 🎯 My Recommendation\n- **Industrial Work Clogs**: Great for work environments that require slip-resistant footwear.\n- **Canvas Low-Top Sneakers**: Perfect for casual outings and everyday wear.\n\nIf you’d like to explore more options or refine your search further, just let me know! 😊', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764169002, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=219, prompt_tokens=1361, total_tokens=1580, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ```filters
-{
-  "category": "empty",
-  "min_price": 50,
-  "max_price": 120,
-  "has_discount": null,
-  "min_discount": null,
-  "customer_type": "all",
-  "in_stock": true
-}
-```
-
-## 👟 Products I Can See
-
-Here are the shoes currently visible on your screen that are priced between `$50` and `$120`:
-
-• **Canvas Low-Top Sneakers** - Comfortable canvas sneakers for everyday casual wear  
-  - Price: `$49.99`  
-  - Category: Casual  
-
-• **Industrial Work Clogs** - Slip-resistant work clogs ideal for kitchen and healthcare environments  
-  - Price: `$79.99`  
-  - Category: Work  
-
-### 🎯 My Recommendation
-- **Industrial Work Clogs**: Great for work environments that require slip-resistant footwear.
-- **Canvas Low-Top Sneakers**: Perfect for casual outings and everyday wear.
-
-If you’d like to explore more options or refine your search further, just let me know! 😊
-Message type: <class 'str'>
-INFO:     127.0.0.1:64438 - "POST /process-chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64538 - "GET /utility/recipe-images/random?count=10&t=1764169019011 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:64855 - "GET /utility/recipe-images/random?count=10&t=1764169079042 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:65222 - "GET /utility/recipe-images/random?count=10&t=1764169138915 HTTP/1.1" 404 Not Found
-OpenAI Response: ChatCompletion(id='chatcmpl-CgBHVgIeeIH77dhniLePA4JKR3vMY', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='## 👟 Products I Can See\n\nHere are the shoes currently visible on your screen:\n\n1. **Classic Leather Oxford** \n   - Price: `$129.99`\n   - Category: Formal\n   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions\n\n2. **Air Cushion Running Shoes** \n   - Price: `$89.99`\n   - Category: Athletic\n   - ✨ Lightweight running shoes with advanced air cushioning technology\n   - **Discount: 15% off**\n\n3. **Professional Safety Boots** \n   - Price: `$159.99`\n   - Category: Work\n   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection\n   - **Discount: 20% off**\n\n4. **Canvas Low-Top Sneakers** \n   - Price: `$49.99`\n   - Category: Casual\n   - ✨ Comfortable canvas sneakers for everyday casual wear\n\n5. **Premium Hiking Boots** \n   - Price: `$199.99`\n   - Category: Outdoor\n   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails\n   - **Discount: 10% off**\n\n6. **Ballet Flat Comfort** \n   - Price: `$59.99`\n   - Category: Casual\n   - ✨ Elegant ballet flats with memory foam insole for all-day comfort\n\n7. **High-Performance Basketball** \n   - Price: `$149.99`\n   - Category: Athletic\n   - ✨ Professional basketball shoes with responsive cushioning and grip\n   - **Discount: 25% off**\n\n8. **Dress Loafers Premium** \n   - Price: `$119.99`\n   - Category: Formal\n   - ✨ Slip-on leather loafers combining comfort with sophisticated style\n\nIf you have any specific preferences or questions about these products, feel free to ask! 😊', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, annotations=[]), content_filter_results={'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}})], created=1764169177, model='gpt-4o-mini-2024-07-18', object='chat.completion', service_tier=None, system_fingerprint='fp_efad92c60b', usage=CompletionUsage(completion_tokens=387, prompt_tokens=861, total_tokens=1248, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)), prompt_filter_results=[{'prompt_index': 0, 'content_filter_results': {'hate': {'filtered': False, 'severity': 'safe'}, 'self_harm': {'filtered': False, 'severity': 'safe'}, 'sexual': {'filtered': False, 'severity': 'safe'}, 'violence': {'filtered': False, 'severity': 'safe'}}}])
-Assistant message: ## 👟 Products I Can See
-
-Here are the shoes currently visible on your screen:
-
-1. **Classic Leather Oxford** 
-   - Price: `$129.99`
-   - Category: Formal
-   - ✨ Timeless leather oxford shoes perfect for business meetings and formal occasions
-
-2. **Air Cushion Running Shoes** 
-   - Price: `$89.99`
-   - Category: Athletic
-   - ✨ Lightweight running shoes with advanced air cushioning technology
-   - **Discount: 15% off**
-
-3. **Professional Safety Boots** 
-   - Price: `$159.99`
-   - Category: Work
-   - ✨ Steel-toe safety boots meeting OSHA standards for workplace protection
-   - **Discount: 20% off**
-
-4. **Canvas Low-Top Sneakers** 
-   - Price: `$49.99`
-   - Category: Casual
-   - ✨ Comfortable canvas sneakers for everyday casual wear
-
-5. **Premium Hiking Boots** 
-   - Price: `$199.99`
-   - Category: Outdoor
-   - ✨ Waterproof hiking boots with excellent ankle support for mountain trails
-   - **Discount: 10% off**
-
-6. **Ballet Flat Comfort** 
-   - Price: `$59.99`
-   - Category: Casual
-   - ✨ Elegant ballet flats with memory foam insole for all-day comfort
-
-7. **High-Performance Basketball** 
-   - Price: `$149.99`
-   - Category: Athletic
-   - ✨ Professional basketball shoes with responsive cushioning and grip
-   - **Discount: 25% off**
-
-8. **Dress Loafers Premium** 
-   - Price: `$119.99`
-   - Category: Formal
-   - ✨ Slip-on leather loafers combining comfort with sophisticated style
-
-If you have any specific preferences or questions about these products, feel free to ask! 😊
-Message type: <class 'str'>
-INFO:     127.0.0.1:65464 - "POST /process-chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'services/chat_service.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [97338]
-INFO:     Started server process [99484]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     127.0.0.1:49212 - "GET /utility/recipe-images/random?count=10&t=1764169198936 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49615 - "GET /utility/recipe-images/random?count=10&t=1764169258942 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50025 - "GET /utility/recipe-images/random?count=10&t=1764169318902 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50495 - "GET /utility/recipe-images/random?count=10&t=1764169378943 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50771 - "GET /utility/recipe-images/random?count=10&t=1764169438974 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51076 - "GET /utility/recipe-images/random?count=10&t=1764169498938 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51401 - "GET /utility/recipe-images/random?count=10&t=1764169558899 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51703 - "GET /utility/recipe-images/random?count=10&t=1764169618919 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52005 - "GET /utility/recipe-images/random?count=10&t=1764169678942 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52362 - "GET /utility/recipe-images/random?count=10&t=1764169738911 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52641 - "GET /utility/recipe-images/random?count=10&t=1764169798932 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52935 - "GET /utility/recipe-images/random?count=10&t=1764169858916 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:53242 - "GET /utility/recipe-images/random?count=10&t=1764169918909 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:53540 - "GET /utility/recipe-images/random?count=10&t=1764169978898 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:53808 - "GET /utility/recipe-images/random?count=10&t=1764170038894 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:54130 - "GET /utility/recipe-images/random?count=10&t=1764170098974 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:54420 - "GET /utility/recipe-images/random?count=10&t=1764170158900 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:54716 - "GET /utility/recipe-images/random?count=10&t=1764170218911 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:55025 - "GET /utility/recipe-images/random?count=10&t=1764170278906 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:55294 - "GET /utility/recipe-images/random?count=10&t=1764170338894 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:55617 - "GET /utility/recipe-images/random?count=10&t=1764170398916 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:55898 - "GET /utility/recipe-images/random?count=10&t=1764170458893 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:56189 - "GET /utility/recipe-images/random?count=10&t=1764170518920 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:56637 - "GET /utility/recipe-images/random?count=10&t=1764170578920 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:56981 - "GET /utility/recipe-images/random?count=10&t=1764170638945 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:57685 - "GET /utility/recipe-images/random?count=10&t=1764170698958 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:58260 - "GET /utility/recipe-images/random?count=10&t=1764170758938 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:58706 - "GET /utility/recipe-images/random?count=10&t=1764170818959 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59069 - "GET /utility/recipe-images/random?count=10&t=1764170878924 HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59465 - "GET /utility/recipe-images/random?count=10&t=1764170938896 HTTP/1.1" 404 Not Found
+'
+ActivityId: 2a2a9474-4980-4e54-b2cf-624447fd0d7f, Microsoft.Azure.Documents.Common/2.14.0
+INFO:     127.0.0.1:62676 - "POST /process-chat HTTP/1.1" 200 OK
