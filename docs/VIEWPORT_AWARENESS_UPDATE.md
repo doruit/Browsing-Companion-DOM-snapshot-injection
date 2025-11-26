@@ -2,14 +2,20 @@
 
 ## Overview
 
-Enhanced the chatbot to distinguish between products currently visible on screen and products that require scrolling down (below the fold). This allows the chatbot to guide users more effectively by saying things like "if you scroll down a bit, you'll find..."
+Enhanced the chatbot to track products in three visibility zones based on scroll position:
+1. **Visible** - Products currently on screen
+2. **Above the fold** - Products the user has scrolled past (require scrolling up)
+3. **Below the fold** - Products not yet visible (require scrolling down)
+
+This allows the chatbot to guide users more effectively by saying things like "scroll up to see..." or "scroll down to find..."
 
 ## Problem Statement
 
-**Before:** When users asked about products with specific criteria (e.g., "shoes with at least 25% discount"), the chatbot only knew about products currently visible in the viewport. If matching products existed further down the page, the chatbot would incorrectly say they don't exist.
+**Before:** When users asked about products with specific criteria (e.g., "shoes with at least 25% discount"), the chatbot only knew about products currently visible in the viewport. If matching products were above or below the visible area, the chatbot would incorrectly say they don't exist.
 
 **After:** The chatbot now tracks ALL products on the page and can tell users:
 - Which matching products are currently visible
+- Which matching products require scrolling up to see (already viewed)
 - Which matching products require scrolling down to see
 
 ## Technical Changes
@@ -20,7 +26,8 @@ Enhanced the chatbot to distinguish between products currently visible on screen
 ```typescript
 export interface DOMSnapshot {
   visible_products: Array<{...}>;
-  below_fold_products: Array<{...}>; // NEW: Products below viewport
+  above_fold_products: Array<{...}>; // Products scrolled past (above viewport)
+  below_fold_products: Array<{...}>; // Products not yet visible (below viewport)
   page_url: string;
   timestamp: number;
 }
@@ -28,31 +35,48 @@ export interface DOMSnapshot {
 
 ### 2. Frontend - DOM Capture Service (`frontend/src/utils/domCapture.ts`)
 
-**Enhanced tracking:**
+**Enhanced tracking with three zones:**
+- Added `visibleProducts` Set to track products currently on screen
+- Added `aboveFoldProducts` Set to track products scrolled past
 - Added `belowFoldProducts` Set to track products below the viewport
 - Added `productElements` Map to store references to all product DOM elements
-- Modified Intersection Observer callback to categorize products as visible or below-fold based on `getBoundingClientRect()`
-- Updated `captureSnapshot()` to return both visible and below-fold products
+- Modified Intersection Observer callback to categorize products based on `getBoundingClientRect()`
+- Updated `captureSnapshot()` to return visible, above-fold, and below-fold products
 
 **Key logic:**
 ```typescript
-// Check if product is below the viewport
-const rect = entry.target.getBoundingClientRect();
-if (rect.top > window.innerHeight) {
-  this.belowFoldProducts.add(productId);
+if (entry.isIntersecting) {
+  // Product is now visible
+  this.visibleProducts.add(productId);
+  this.aboveFoldProducts.delete(productId);
+  this.belowFoldProducts.delete(productId);
+} else {
+  this.visibleProducts.delete(productId);
+  const rect = entry.target.getBoundingClientRect();
+  if (rect.bottom < 0) {
+    // Product is above the viewport (scrolled past)
+    this.aboveFoldProducts.add(productId);
+  } else if (rect.top > window.innerHeight) {
+    // Product is below the viewport (not yet scrolled to)
+    this.belowFoldProducts.add(productId);
+  }
 }
 ```
 
 ### 3. Backend - Context Provider (`services/ai-service/services/context_provider.py`)
 
-**Enhanced context formatting:**
+**Enhanced context formatting with three sections:**
 ```python
 # Format visible products
 🔍 VISIBLE PRODUCTS (currently on screen):
 1. Product Name | Category: ... | Price: $... | Discount: ...%
 
+# Format above-fold products (scrolled past)
+⬆️ ABOVE THE FOLD (X products - user scrolled past these):
+1. Product Name | Category: ... | Price: $... | Discount: ...%
+
 # Format below-fold products  
-📜 BELOW THE FOLD (X products require scrolling down):
+⬇️ BELOW THE FOLD (X products - require scrolling down):
 1. Product Name | Category: ... | Price: $... | Discount: ...%
 ```
 
@@ -61,15 +85,17 @@ if (rect.top > window.innerHeight) {
 **Added instructions:**
 ```
 VIEWPORT AWARENESS:
-You will receive information about TWO types of products:
+You will receive information about THREE types of products based on scroll position:
 1. 🔍 VISIBLE PRODUCTS - Currently visible on the user's screen
-2. 📜 BELOW THE FOLD - Products that require scrolling down
+2. ⬆️ ABOVE THE FOLD - Products the user has already scrolled past
+3. ⬇️ BELOW THE FOLD - Products that require scrolling down
 
 When answering questions:
-- If matching products are only in the VISIBLE section, mention them directly
-- If matching products are BELOW THE FOLD, tell the user they need to scroll down
-- Use phrases like "if you scroll down a bit..." or "further down the page..."
-- Always check BOTH sections when answering questions about availability
+- ALWAYS check ALL THREE sections when answering questions about availability
+- If products matching the criteria are VISIBLE, list them in a "Currently Visible" section
+- If products matching the criteria are ABOVE THE FOLD, list them in an "Above (Scroll Up)" section
+- If products matching the criteria are BELOW THE FOLD, list them in a "Below (Scroll Down)" section
+- Use phrases like "scroll up to see..." and "scroll down to see..." appropriately
 ```
 
 ## Usage Example
@@ -86,36 +112,42 @@ Bot: "I don't see any shoes with 25% discount in the visible products."
 User: "Show me shoes with at least 25% discount"
 Bot: "I can see you're looking for great deals! 💰
 
-While there aren't any shoes with 25% discount in the visible area, 
-if you scroll down a bit, you'll find:
+### Currently Visible:
+No shoes with 25%+ discount are visible right now.
 
+### ⬆️ Scroll Up:
+• **Classic Leather Oxford** - 30% off, now $111.99 (was $159.99)
+
+### ⬇️ Scroll Down:
 • **Trail Runner Pro** - 30% off, now $69.99 (was $99.99)
 • **Urban Comfort Sneakers** - 25% off, now $67.49 (was $89.99)
 
-✨ These are excellent deals that meet your criteria!"
-✅ CORRECT - Guides user to scroll down
+✨ Click any product name to scroll directly to it!"
+✅ CORRECT - Guides user to scroll in both directions
 ```
 
 ## Benefits
 
-1. **Accurate Responses** - No longer tells users products don't exist when they're just below the fold
-2. **Better Navigation** - Guides users to scroll when needed
-3. **Improved UX** - Users don't need to manually scroll to find what they're looking for
-4. **Context Awareness** - Chatbot understands the full page context, not just visible viewport
+1. **Accurate Responses** - No longer tells users products don't exist when they're just off-screen
+2. **Bi-directional Navigation** - Guides users to scroll up OR down as needed
+3. **Improved UX** - Users know exactly where to find matching products
+4. **Complete Context Awareness** - Chatbot understands all products on the page regardless of scroll position
+5. **Click-to-Scroll** - Users can click product names to jump directly to them
 
 ## Testing
 
 To test this feature:
 
-1. **Load the shop page** with filters applied (e.g., minimum 25% discount)
-2. **Scroll to top** so some matching products are below the fold
-3. **Ask the chatbot** about those products
-4. **Verify** the chatbot mentions they need to scroll down
+1. **Load the shop page** with many products visible
+2. **Scroll to the middle** so some products are above and below the fold
+3. **Ask the chatbot** about products
+4. **Verify** the chatbot correctly categorizes products in all three zones
 
-Example test query:
+Example test queries:
 - "Show me shoes with at least 25% discount"
 - "Which shoes have the best deals?"
-- "Are there any running shoes on sale?"
+- "List all athletic shoes"
+- "What's the most expensive shoe on this page?"
 
 ## Architecture Impact
 
@@ -123,17 +155,26 @@ Example test query:
 ```
 User scrolls/loads page
          ↓
-DOM Capture Service categorizes all products
+DOM Capture Service tracks all products
          ↓
-Visible products + Below-fold products captured
+Products categorized: Visible | Above Fold | Below Fold
          ↓
-Sent to AI Service with chat message
+Snapshot sent to AI Service with chat message
          ↓
-Context Provider formats both sections
+Context Provider formats all three sections
          ↓
-AI receives full page context
+AI receives complete page context
          ↓
-AI responds with scroll guidance when needed
+AI responds with appropriate scroll guidance
+```
+
+### Three-Zone Tracking
+```
+         ⬆️ ABOVE THE FOLD (scrolled past)
+    ═══════════════════════════════════
+         🔍 VISIBLE (currently on screen)
+    ═══════════════════════════════════
+         ⬇️ BELOW THE FOLD (not yet visible)
 ```
 
 ### Performance Considerations
@@ -146,17 +187,17 @@ AI responds with scroll guidance when needed
 ## Future Enhancements
 
 Possible improvements:
-1. Track products "above the fold" (user scrolled past)
+1. ~~Track products "above the fold" (user scrolled past)~~ ✅ DONE
 2. Estimate scroll distance ("scroll down about 2 screens")
-3. Add scroll-to-product functionality in UI
-4. Highlight recommended products when user scrolls
+3. ~~Add scroll-to-product functionality in UI~~ ✅ DONE (Click-to-scroll feature)
+4. ~~Highlight recommended products when user scrolls~~ ✅ DONE (Product highlighting animation)
 
 ## Files Modified
 
-1. `frontend/src/types.ts` - Added `below_fold_products` to DOMSnapshot
-2. `frontend/src/utils/domCapture.ts` - Enhanced tracking logic
-3. `services/ai-service/services/context_provider.py` - Updated context formatting
-4. `services/ai-service/services/chat_service.py` - Enhanced system prompt
+1. `frontend/src/types.ts` - Added `above_fold_products` and `below_fold_products` to DOMSnapshot
+2. `frontend/src/utils/domCapture.ts` - Enhanced tracking logic for three zones
+3. `services/ai-service/services/context_provider.py` - Updated context formatting for three sections
+4. `services/ai-service/services/chat_service.py` - Enhanced system prompt with three-zone awareness
 
 ## Migration Notes
 

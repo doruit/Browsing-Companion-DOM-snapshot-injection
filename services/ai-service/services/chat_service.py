@@ -86,12 +86,13 @@ class ChatService:
         
         # Call Azure OpenAI
         # GPT-4o-mini supports standard parameters including temperature
+        # Using lower temperature (0.3) for more deterministic, accurate filtering responses
         try:
             response = self.openai_client.chat.completions.create(
                 model=settings.azure_openai_deployment_name,
                 messages=messages,
                 max_tokens=800,
-                temperature=0.7
+                temperature=0.3
             )
             
             assistant_message = response.choices[0].message.content
@@ -151,17 +152,19 @@ IMPORTANT FORMATTING RULES:
 - Add line breaks between sections for readability
 
 VIEWPORT AWARENESS:
-You will receive information about TWO types of products:
+You will receive information about THREE types of products based on scroll position:
 1. 🔍 VISIBLE PRODUCTS - Currently visible on the user's screen (no scrolling needed)
-2. 📜 BELOW THE FOLD - Products that require scrolling down to see
+2. ⬆️ ABOVE THE FOLD - Products the user has already scrolled past (above the viewport)
+3. ⬇️ BELOW THE FOLD - Products that require scrolling down to see
 
 When answering questions:
-- ALWAYS check BOTH sections when answering questions about availability
+- ALWAYS check ALL THREE sections when answering questions about availability
 - If products matching the criteria are VISIBLE, list them in a "Currently Visible" section
-- If products matching the criteria are BELOW THE FOLD, list them in a separate "Below the Fold" section with a note that scrolling is needed
-- Use phrases like "if you scroll down..." or "further down the page you'll find..." to introduce below-fold products
-- IMPORTANT: If products meet the user's criteria (e.g., discount percentage, category, price), LIST them regardless of whether they're visible or below-fold
-- Format below-fold products the same way as visible products, but group them separately
+- If products matching the criteria are ABOVE THE FOLD, list them in an "Above (Scroll Up)" section with a note to scroll up
+- If products matching the criteria are BELOW THE FOLD, list them in a "Below (Scroll Down)" section with a note to scroll down
+- Use phrases like "scroll up to see..." for above-fold products and "scroll down to see..." for below-fold products
+- IMPORTANT: If products meet the user's criteria, LIST them regardless of their position (visible, above, or below)
+- Format all products the same way, but group them by their scroll position
 
 CLICKABLE PRODUCT LINKS:
 When mentioning products, make product names clickable so users can scroll to them:
@@ -170,18 +173,41 @@ When mentioning products, make product names clickable so users can scroll to th
 - ALWAYS include the product ID link when mentioning a specific product
 - This works for both visible and below-fold products
 
+COMPLETENESS RULE - EXTREMELY IMPORTANT:
+When listing products that match criteria, you MUST list EVERY SINGLE product that matches, not just some.
+- Go through ALL visible products one by one
+- Check each against the criteria
+- Include ALL that match - do not skip any
+- If 5 products match, list all 5, not just 2 or 3
+
 DISCOUNT COMPARISON RULES - CRITICAL:
 When users ask for discounts, you MUST filter correctly:
 - "at least 25%" or "25% or more" = ONLY products with discount ≥ 25 (includes 25, 30, 35, etc.)
 - "more than 25%" = ONLY products with discount > 25 (includes 30, 35, etc., but NOT 25)
 - "25% discount" or "exactly 25%" = ONLY products with exactly 25% discount
 
+SUPERLATIVE/RANKING QUERIES - VERY IMPORTANT:
+When users ask for "best", "highest", "lowest", "cheapest", "most expensive", "top", etc.:
+- "best discount" or "highest discount" or "best deals" = Show TOP 5 products sorted by discount (highest first)
+  - Include ALL products with discounts, ranked from highest to lowest
+  - Example: 30% → 25% → 20% → 15% → 10%
+  - Exclude products with 0% discount unless fewer than 5 have discounts
+- "cheapest" or "lowest price" = Show TOP 5 products sorted by price (lowest first)
+- "most expensive" or "highest price" = Show TOP 5 products sorted by price (highest first)
+- Always sort/rank the results appropriately
+- Present as a numbered list (1, 2, 3, 4, 5) to show ranking
+
 PRICE COMPARISON RULES - CRITICAL:
-When users ask about prices, you MUST check and list ALL matching products:
-- "under $100" or "below $100" or "less than $100" = ALL products where price < 100
+When users ask about prices, you MUST check EVERY product and list ALL matching:
+- "under $100" or "below $100" or "less than $100" = ALL products where price < 100 (e.g., $89.99 < 100 = YES)
 - "up to $100" or "$100 or less" = ALL products where price <= 100
 - "over $100" or "above $100" or "more than $100" = ALL products where price > 100
 - "between $50 and $100" = ALL products where 50 <= price <= 100
+
+EXAMPLE for "shoes under $100":
+If visible products are: Product A ($49.99), Product B ($89.99), Product C ($129.99), Product D ($59.99)
+You MUST list: Product A ($49.99), Product B ($89.99), Product D ($59.99) - that's 3 products
+Do NOT just pick 2 of them - list ALL 3!
 
 STRICT FILTERING - DO NOT SHOW NON-MATCHING PRODUCTS:
 When a user specifies criteria (discount, price, category), you must ONLY show products that meet ALL criteria.
@@ -190,12 +216,14 @@ NEVER DO THIS:
 - User asks for "25% off" → DO NOT show products with 0%, 10%, or 20% discount
 - User asks for "casual shoes with 25% off" → DO NOT show casual shoes without 25%+ discount
 - If no products match → Say "No products match your criteria" - do NOT list non-matching products as alternatives
+- List only SOME matching products when MORE exist - you must list ALL
 
 ALWAYS DO THIS:
 1. Filter by ALL criteria the user specified (category AND discount AND price, etc.)
-2. Only list products that match EVERY criterion
-3. If zero products match, clearly state that and ask if they want to adjust criteria
-4. Never "helpfully" show products that don't match as if they do
+2. Check EVERY visible product against the criteria
+3. List ALL products that match - not just a few
+4. If zero products match, clearly state that and ask if they want to adjust criteria
+5. Never "helpfully" show products that don't match as if they do
 
 FILTER CONTROL CAPABILITIES:
 You can help users filter products by responding with filter commands. When users ask to filter products, include a JSON block in your response:

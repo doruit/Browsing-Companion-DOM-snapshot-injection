@@ -2,12 +2,14 @@
 
 A context-aware chatbot demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Foundry.
 
+> ⚠️ **Note**: This is a demo/proof-of-concept project. There may be bugs, issues, or areas for improvement. **Feedback, pull requests, and contributions of any kind are highly appreciated!** Feel free to open issues or submit PRs.
+
 ## 🎯 Overview
 
 This project demonstrates a shoe e-commerce website where an AI chatbot assistant can:
 - See which products are currently visible on the user's screen
-- **Distinguish between visible products and those below the fold** (requiring scrolling)
-- Guide users to scroll when matching products are further down the page
+- **Track products in three visibility zones**: visible, above the fold (scrolled past), and below the fold (not yet visible)
+- Guide users to scroll up or down when matching products are outside the visible area
 - Provide personalized recommendations based on user preferences (B2B/B2C, category filters)
 - Answer questions about visible products using context from DOM snapshots
 - Maintain conversation history and user preferences
@@ -490,8 +492,11 @@ The AI can see which products are currently visible in your viewport!
 ### 1. **Context-Aware AI Chatbot** 🤖
 The Smart Shopping Companion can "see" what's on your screen:
 - Detects visible products in viewport using Intersection Observer
-- **Distinguishes between visible products and below-fold products** (requires scrolling)
-- Guides users with phrases like "if you scroll down a bit..." when matching products are below the fold
+- **Tracks three visibility zones**: 
+  - 🔍 **Visible**: Products currently on screen
+  - ⬆️ **Above the fold**: Products the user has scrolled past (scroll up to see)
+  - ⬇️ **Below the fold**: Products not yet visible (scroll down to see)
+- Guides users with phrases like "scroll up to see..." or "scroll down to see..." for off-screen products
 - **Click-to-scroll**: Click any product name in chatbot responses to automatically scroll to and highlight that product
 - Captures product details (name, price, category, discount, stock status)
 - Maintains conversation context across multiple interactions
