@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.38.5.1644",
+      "templateHash": "5462258510013353788"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure region for AI Foundry resources"
+      }
+    },
+    "foundryName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the AI Foundry workspace"
+      }
+    },
+    "projectName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the AI Foundry project"
+      }
+    },
+    "storageAccountId": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource ID of the Storage Account"
+      }
+    },
+    "keyVaultId": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource ID of the Key Vault"
+      }
+    },
+    "appInsightsId": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource ID of the Application Insights"
+      }
+    },
+    "openAiId": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource ID of the Azure OpenAI account"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces",
+      "apiVersion": "2025-09-01",
+      "name": "[parameters('foundryName')]",
+      "location": "[parameters('location')]",
+      "kind": "AIServices",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "friendlyName": "[parameters('foundryName')]",
+        "description": "AI Foundry Workspace for Browsing Companion",
+        "storageAccount": "[parameters('storageAccountId')]",
+        "keyVault": "[parameters('keyVaultId')]",
+        "applicationInsights": "[parameters('appInsightsId')]",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces",
+      "apiVersion": "2025-09-01",
+      "name": "[parameters('projectName')]",
+      "location": "[parameters('location')]",
+      "kind": "Project",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "friendlyName": "[parameters('projectName')]",
+        "description": "AI Foundry Project for Browsing Companion",
+        "hubResourceId": "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('foundryName'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('foundryName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.MachineLearningServices/workspaces/connections",
+      "apiVersion": "2025-09-01",
+      "name": "[format('{0}/{1}', parameters('foundryName'), 'aoai-connection')]",
+      "properties": {
+        "category": "AzureOpenAI",
+        "target": "[reference(parameters('openAiId'), '2025-09-01').properties.endpoint]",
+        "authType": "AAD"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('foundryName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "foundryId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('foundryName'))]"
+    },
+    "foundryName": {
+      "type": "string",
+      "value": "[parameters('foundryName')]"
+    },
+    "projectId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('projectName'))]"
+    },
+    "projectName": {
+      "type": "string",
+      "value": "[parameters('projectName')]"
+    },
+    "foundryPrincipalId": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', parameters('foundryName')), '2025-09-01', 'full').identity.principalId]"
+    },
+    "projectPrincipalId": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', parameters('projectName')), '2025-09-01', 'full').identity.principalId]"
+    }
+  }
+}
