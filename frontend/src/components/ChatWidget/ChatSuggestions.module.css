@@ -1,0 +1,82 @@
+.suggestions-container {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.suggestions-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.suggestion-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #333;
+  width: 100%;
+}
+
+.suggestion-button:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateX(2px);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.suggestion-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.suggestion-text {
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* Animation for suggestion changes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-button {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .suggestions-container {
+    padding: 0.5rem;
+  }
+
+  .suggestion-button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}

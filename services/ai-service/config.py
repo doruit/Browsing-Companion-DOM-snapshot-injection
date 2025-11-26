@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # Azure OpenAI
     azure_openai_endpoint: str
     azure_openai_api_key: str
-    azure_openai_deployment_name: str = "gpt-5"
+    azure_openai_deployment_name: str = "gpt-4o-mini"
     
     # Cosmos DB
     cosmos_endpoint: str

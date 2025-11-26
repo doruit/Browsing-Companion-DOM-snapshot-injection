@@ -24,9 +24,9 @@ export const ChatComposer: React.FC<ChatComposerProps> = ({ onSend, disabled }) 
   };
 
   return (
-    <div className={styles.chatComposer}>
+    <div className={styles['chat-composer']}>
       <textarea
-        className={styles.chatInput}
+        className={styles['chat-input']}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyPress={handleKeyPress}
@@ -35,7 +35,7 @@ export const ChatComposer: React.FC<ChatComposerProps> = ({ onSend, disabled }) 
         disabled={disabled}
       />
       <button
-        className={styles.sendButton}
+        className={styles['send-button']}
         onClick={handleSend}
         disabled={disabled || !message.trim()}
         aria-label="Send message"

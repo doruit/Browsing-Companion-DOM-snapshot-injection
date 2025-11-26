@@ -23,10 +23,10 @@ resource openAiAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
   }
 }
 
-// Deploy GPT-5 model
-resource gpt5Deployment 'Microsoft.CognitiveServices/accounts/deployments@2024-10-01' = {
+// Deploy GPT-4o-mini model
+resource gpt4oMiniDeployment 'Microsoft.CognitiveServices/accounts/deployments@2024-10-01' = {
   parent: openAiAccount
-  name: 'gpt-5'
+  name: 'gpt-4o-mini'
   sku: {
     name: 'Standard'
     capacity: 10
@@ -34,8 +34,8 @@ resource gpt5Deployment 'Microsoft.CognitiveServices/accounts/deployments@2024-1
   properties: {
     model: {
       format: 'OpenAI'
-      name: 'gpt-5-mini'
-      version: '2025-08-07'
+      name: 'gpt-4o-mini'
+      version: '2024-07-18'
     }
     versionUpgradeOption: 'OnceNewDefaultVersionAvailable'
   }
@@ -45,4 +45,4 @@ output openAiId string = openAiAccount.id
 output openAiName string = openAiAccount.name
 output endpoint string = openAiAccount.properties.endpoint
 output apiKey string = openAiAccount.listKeys().key1
-output deploymentName string = gpt5Deployment.name
+output deploymentName string = gpt4oMiniDeployment.name

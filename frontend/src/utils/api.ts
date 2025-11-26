@@ -56,11 +56,21 @@ export class ApiClient {
     category?: string;
     customer_type?: string;
     search?: string;
+    min_price?: number | null;
+    max_price?: number | null;
+    has_discount?: boolean | null;
+    min_discount?: number | null;
+    in_stock?: boolean | null;
   }) {
     const params = new URLSearchParams();
     if (filters?.category) params.append('category', filters.category);
     if (filters?.customer_type) params.append('customer_type', filters.customer_type);
     if (filters?.search) params.append('search', filters.search);
+    if (filters?.min_price !== null && filters?.min_price !== undefined) params.append('min_price', filters.min_price.toString());
+    if (filters?.max_price !== null && filters?.max_price !== undefined) params.append('max_price', filters.max_price.toString());
+    if (filters?.has_discount !== null && filters?.has_discount !== undefined) params.append('has_discount', filters.has_discount.toString());
+    if (filters?.min_discount !== null && filters?.min_discount !== undefined) params.append('min_discount', filters.min_discount.toString());
+    if (filters?.in_stock !== null && filters?.in_stock !== undefined) params.append('in_stock', filters.in_stock.toString());
     
     const query = params.toString();
     return this.request(`/api/products${query ? `?${query}` : ''}`);

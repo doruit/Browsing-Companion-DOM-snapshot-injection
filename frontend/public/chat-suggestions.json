@@ -1,0 +1,84 @@
+{
+  "suggestions": [
+    {
+      "category": "context",
+      "text": "What shoes am I looking at right now?",
+      "icon": "👁️"
+    },
+    {
+      "category": "context",
+      "text": "Tell me about the products on my screen",
+      "icon": "👁️"
+    },
+    {
+      "category": "context",
+      "text": "Which of these has the best discount?",
+      "icon": "💰"
+    },
+    {
+      "category": "context",
+      "text": "Are any of these available for B2B?",
+      "icon": "🏢"
+    },
+    {
+      "category": "filter",
+      "text": "Show me only discounted items",
+      "icon": "✨"
+    },
+    {
+      "category": "filter",
+      "text": "I want to see cheaper options",
+      "icon": "💰"
+    },
+    {
+      "category": "filter",
+      "text": "Filter for business purchases",
+      "icon": "🏢"
+    },
+    {
+      "category": "filter",
+      "text": "Only show what's in stock",
+      "icon": "📦"
+    },
+    {
+      "category": "filter",
+      "text": "Show me shoes under $100",
+      "icon": "💵"
+    },
+    {
+      "category": "filter",
+      "text": "Find casual shoes with at least 25% off",
+      "icon": "🎯"
+    },
+    {
+      "category": "navigation",
+      "text": "I need formal shoes between $100 and $200",
+      "icon": "👔"
+    },
+    {
+      "category": "navigation",
+      "text": "Show me athletic shoes on sale",
+      "icon": "👟"
+    },
+    {
+      "category": "navigation",
+      "text": "Find work shoes for my business",
+      "icon": "💼"
+    },
+    {
+      "category": "recommendation",
+      "text": "What would you recommend for running?",
+      "icon": "🏃"
+    },
+    {
+      "category": "recommendation",
+      "text": "I'm looking for comfortable everyday shoes",
+      "icon": "😌"
+    },
+    {
+      "category": "recommendation",
+      "text": "What's the best deal available?",
+      "icon": "🎁"
+    }
+  ]
+}

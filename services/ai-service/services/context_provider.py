@@ -63,11 +63,11 @@ class DOMSnapshotProvider(ContextProvider):
 
 
 class ScreenshotProvider(ContextProvider):
-    """Placeholder for future screenshot-based context (GPT-5 Vision)"""
+    """Placeholder for future screenshot-based context (GPT-4o Vision)"""
     
     async def get_context(self, data: Dict[str, Any]) -> str:
-        """Extract context from screenshots using GPT-5 Vision"""
-        # TODO: Implement screenshot analysis with GPT-5 vision
+        """Extract context from screenshots using GPT-4o Vision"""
+        # TODO: Implement screenshot analysis with GPT-4o vision
         return "Screenshot analysis not yet implemented."
 
 

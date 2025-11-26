@@ -11,7 +11,7 @@ All 6 tasks from the implementation plan have been successfully completed.
 
 - ✅ `main.bicep` - Subscription-level orchestration
 - ✅ `modules/ai-foundry.bicep` - Microsoft Foundry Hub & Project (@2024-04-01)
-- ✅ `modules/openai.bicep` - Azure OpenAI with GPT-5 (@2025-09-01)
+- ✅ `modules/openai.bicep` - Azure OpenAI with GPT-4o-mini (@2025-09-01)
 - ✅ `modules/cosmos-db.bicep` - Serverless Cosmos DB (@2024-05-15)
 - ✅ `modules/storage.bicep` - Blob Storage (@2025-06-01)
 - ✅ `modules/key-vault.bicep` - Key Vault with RBAC (@2025-05-01)
@@ -182,7 +182,7 @@ All 6 tasks from the implementation plan have been successfully completed.
 3. **AI Service**:
    - `DOMSnapshotProvider` formats snapshot into context
    - Injects into system prompt
-   - GPT-5 receives: base instructions + user preferences + visible products
+   - GPT-4o-mini receives: base instructions + user preferences + visible products
 
 ## 🏗️ Architecture Summary
 
@@ -202,7 +202,7 @@ Python AI Service (Port 8000)
   └─ Context Provider
        └─ User Preferences (Cosmos DB)
             └─ System Prompt Builder
-                 └─ Azure OpenAI GPT-5
+                 └─ Azure OpenAI GPT-4o-mini
 ```
 
 ## 📊 Code Statistics
@@ -219,7 +219,7 @@ Python AI Service (Port 8000)
 
 ### Core Features
 - ✅ DOM snapshot capture with Intersection Observer
-- ✅ Context-aware chat with GPT-5
+- ✅ Context-aware chat with GPT-4o-mini
 - ✅ User preferences (B2B/B2C, categories)
 - ✅ Conversation history storage
 - ✅ JWT authentication
@@ -229,7 +229,7 @@ Python AI Service (Port 8000)
 ### Infrastructure
 - ✅ Latest Azure API versions (post-Ignite 2024)
 - ✅ Serverless Cosmos DB with free tier
-- ✅ Azure OpenAI with GPT-5 deployment
+- ✅ Azure OpenAI with GPT-4o-mini deployment
 - ✅ Key Vault for secrets
 - ✅ Application Insights monitoring
 - ✅ Bicep IaC with modular design

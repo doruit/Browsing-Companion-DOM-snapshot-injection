@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import styles from './ChatWidget.module.css';
 import { ChatMessage } from '../../types';
 
@@ -13,9 +15,13 @@ export const ChatMessageComponent: React.FC<ChatMessageProps> = ({ message }) =>
   };
 
   return (
-    <div className={`${styles.chatMessage} ${styles[message.role]}`}>
-      <div className={styles.messageBubble}>{message.content}</div>
-      <div className={styles.messageTime}>{formatTime(message.timestamp)}</div>
+    <div className={`${styles['chat-message']} ${styles[message.role]}`}>
+      <div className={styles['message-bubble']}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {message.content}
+        </ReactMarkdown>
+      </div>
+      <div className={styles['message-time']}>{formatTime(message.timestamp)}</div>
     </div>
   );
 };

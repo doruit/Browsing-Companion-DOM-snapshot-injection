@@ -10,12 +10,15 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 - Answer questions about visible products using context from DOM snapshots
 - Maintain conversation history and user preferences
 
+![Smart Shopping Companion Demo](docs/images/demo-screenshot.png)
+*Live demo showing the AI chatbot filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
+
 ## 🏗️ Architecture
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────────────┐
 │   React     │────▶│   Node.js    │────▶│   Python    │────▶│  Azure OpenAI    │
-│   Frontend  │     │   Gateway    │     │  AI Service │     │  (GPT-5)         │
+│   Frontend  │     │   Gateway    │     │  AI Service │     │  (GPT-4o-mini)   │
 │  (Port 3000)│     │  (Port 3001) │     │ (Port 8000) │     │                  │
 └─────────────┘     └──────────────┘     └─────────────┘     └──────────────────┘
        │                    │                     │
@@ -29,7 +32,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 - **Frontend**: React 18 + TypeScript + Vite
 - **API Gateway**: Node.js + Express
 - **AI Service**: Python + FastAPI
-- **AI Platform**: Microsoft Foundry + Azure OpenAI (GPT-5)
+- **AI Platform**: Microsoft Foundry + Azure OpenAI (GPT-4o-mini)
 - **Database**: Azure Cosmos DB (serverless)
 - **Storage**: Azure Blob Storage
 - **Infrastructure**: Azure Bicep (latest API versions)
@@ -76,7 +79,7 @@ This will create all required Azure resources (OpenAI, Cosmos DB, Storage, etc.)
 
 The deployment takes approximately 10-15 minutes. Resources created:
 - Resource Group
-- Azure OpenAI with GPT-5 deployment
+- Azure OpenAI with GPT-4o-mini deployment
 - Microsoft Foundry Workspace and Project (latest resource types)
 - Cosmos DB (serverless) with containers
 - Azure Storage with blob container
@@ -168,8 +171,60 @@ Navigate to **http://localhost:3000** in your browser.
    - "Which shoes have discounts right now?"
    - "Recommend running shoes under $100"
    - "What's the most expensive shoe visible?"
+   - "Filter on shoes between 50 and 120 dollars"
 
 The AI can see which products are currently visible in your viewport!
+
+### 🎯 Live Demo Screenshot
+
+![Smart Shopping Companion in Action](docs/images/demo-screenshot.png)
+
+**What you're seeing:**
+- **Real-time Context Awareness**: The chatbot sees 8 products currently visible on screen
+- **Natural Language Filters**: User asks "filter on shoes between 50 and 120 dollar" and the AI automatically applies price range filters
+- **Visual Feedback**: Filter bar updates to show $50-$120 range
+- **Markdown Formatting**: Chat responses use clean markdown with headers, lists, and formatting
+- **Product Intelligence**: AI lists the specific shoes visible with prices and categories
+- **Seamless Integration**: Chat widget, filters, and product grid work together in real-time
+
+## ✨ Key Features Demonstrated
+
+### 1. **Context-Aware AI Chatbot** 🤖
+The Smart Shopping Companion can "see" what's on your screen:
+- Detects visible products in viewport using Intersection Observer
+- Captures product details (name, price, category, discount, stock status)
+- Maintains conversation context across multiple interactions
+
+### 2. **Natural Language Filter Control** 🎯
+Control the product catalog using plain English:
+- "Show me discounted shoes" → Filters to items with discounts
+- "Filter on B2B" → Shows only business products  
+- "Shoes between $50 and $120" → Sets price range automatically
+- Filter state syncs between chatbot and UI in real-time
+
+### 3. **Rich Markdown Responses** ✨
+AI responses are beautifully formatted:
+- Headers, bold text, and bullet points
+- Emoticons for visual engagement (👟 💰 ✨)
+- Code blocks for prices and technical details
+- Clean, scannable layout
+
+### 4. **Dual Control System** ⚙️
+Users can interact through:
+- **Manual Filters**: Traditional UI filter bar with price, discount, customer type
+- **Chat Commands**: Natural language requests to the AI
+- Both methods stay perfectly synchronized
+
+### 5. **Real Product Images** 🖼️
+- High-quality shoe images from Unsplash
+- Curated collection of 8 different shoe styles
+- Fallback emoji display if images fail to load
+
+### 6. **Smart Suggestions** 💡
+Rotating question suggestions help users discover features:
+- 16 pre-written suggestions across 4 categories
+- Changes every 10 seconds to maintain engagement
+- Click any suggestion to instantly send it as a message
 
 ## 📁 Project Structure
 

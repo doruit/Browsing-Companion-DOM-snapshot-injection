@@ -38,6 +38,27 @@ router.get('/', (req, res) => {
       );
     }
 
+    // Filter by discount
+    if (req.query.has_discount === 'true') {
+      filteredProducts = filteredProducts.filter(p => p.discount > 0);
+    } else if (req.query.has_discount === 'false') {
+      filteredProducts = filteredProducts.filter(p => p.discount === 0);
+    }
+
+    // Filter by minimum discount percentage
+    if (req.query.min_discount) {
+      filteredProducts = filteredProducts.filter(p => 
+        p.discount >= parseFloat(req.query.min_discount)
+      );
+    }
+
+    // Filter by stock availability
+    if (req.query.in_stock === 'true') {
+      filteredProducts = filteredProducts.filter(p => p.in_stock);
+    } else if (req.query.in_stock === 'false') {
+      filteredProducts = filteredProducts.filter(p => !p.in_stock);
+    }
+
     // Search by name
     if (req.query.search) {
       const searchTerm = req.query.search.toLowerCase();

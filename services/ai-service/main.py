@@ -35,6 +35,7 @@ class ChatResponse(BaseModel):
     response: str
     session_id: str
     timestamp: str
+    filters: Optional[Dict[str, Any]] = None
 
 
 class PreferencesRequest(BaseModel):

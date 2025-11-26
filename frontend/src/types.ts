@@ -24,6 +24,16 @@ export interface Preferences {
   hidden_categories: string[];
 }
 
+export interface ProductFilters {
+  category: string;
+  minPrice: number | null;
+  maxPrice: number | null;
+  hasDiscount: boolean | null;
+  minDiscount: number | null;
+  customerType: 'all' | 'b2b' | 'b2c';
+  inStock: boolean | null;
+}
+
 export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;

@@ -51,20 +51,20 @@ class DOMSnapshotProvider(ContextProvider):
 ```
 
 **Future providers** (placeholders included):
-- `ScreenshotProvider` - Use GPT-5 Vision to analyze screenshots
+- `ScreenshotProvider` - Use GPT-4o Vision to analyze screenshots
 - `AccessibilityTreeProvider` - Parse semantic HTML structure
 
 ### 3. System Prompt Construction
 
 The AI service builds a rich system prompt combining:
 
-1. **Base instructions**: "You are a helpful shopping assistant..."
+1. **Base instructions**: "You are a Smart Shopping Companion..."
 2. **User preferences**: B2B/B2C status, preferred/hidden categories
 3. **DOM context**: List of visible products with details
 
 **Example prompt**:
 ```
-You are a helpful shopping assistant for a shoe e-commerce website.
+You are a Smart Shopping Companion for a shoe e-commerce website.
 
 Customer Type: B2B business customer
 Preferred Categories: athletic, outdoor
@@ -113,7 +113,7 @@ When answering questions, reference specific products that are visible on the us
                │
                ▼
 ┌─────────────────────────────┐
-│ Azure OpenAI (GPT-5)        │
+│ Azure OpenAI (GPT-4o-mini)  │
 │ Returns context-aware reply │
 └──────────────┬──────────────┘
                │
@@ -143,7 +143,7 @@ The architecture supports adding new context methods without changing the core l
 class ScreenshotProvider(ContextProvider):
     async def get_context(self, data: Dict[str, Any]) -> str:
         screenshot = data.get("screenshot")
-        # Use GPT-5 Vision to analyze screenshot
+        # Use GPT-4o Vision to analyze screenshot
         return vision_analysis_result
 ```
 
@@ -161,7 +161,7 @@ This pattern is valuable for:
 
 - **Intersection Observer**: Efficient viewport detection (< 1ms per frame)
 - **Snapshot size**: Typically 1-5KB JSON per capture
-- **API latency**: ~500-1500ms for GPT-5 response
+- **API latency**: ~200-800ms for GPT-4o-mini response
 - **Cosmos DB**: Serverless auto-scales with usage
 
 ## Privacy & Security
@@ -173,7 +173,7 @@ This pattern is valuable for:
 
 ## Future Enhancements
 
-1. **Screenshot Analysis**: Use GPT-5 Vision for richer visual context
+1. **Screenshot Analysis**: Use a Vision capable model for richer visual context
 2. **Semantic HTML**: Parse accessibility tree for better structure
 3. **User behavior**: Track engagement patterns for better recommendations
 4. **Multi-modal**: Combine DOM + screenshot + user history

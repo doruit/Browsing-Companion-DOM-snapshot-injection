@@ -1,0 +1,133 @@
+.filter-bar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-input,
+.discount-input {
+  padding: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  width: 80px;
+  transition: all 0.2s;
+}
+
+.price-input:focus,
+.discount-input:focus {
+  outline: none;
+  border-color: white;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.price-separator {
+  color: white;
+  font-weight: bold;
+}
+
+.toggle-button,
+.type-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.toggle-button:hover,
+.type-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.toggle-button.active,
+.type-button.active {
+  background: white;
+  color: #667eea;
+  border-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button.inactive {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.type-button {
+  flex: 1;
+  min-width: 60px;
+}
+
+.reset-button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.reset-button:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-section {
+    width: 100%;
+  }
+
+  .reset-button {
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -32,7 +32,7 @@ module keyVault 'modules/key-vault.bicep' = {
   name: 'keyvault-deployment'
   params: {
     location: location
-    keyVaultName: 'kv-${baseName}-${environment}'
+    keyVaultName: 'kv-browse-comp-${environment}'
     tenantId: tenantId
     principalId: principalId
   }
@@ -90,6 +90,7 @@ module aiFoundry 'modules/ai-foundry.bicep' = {
     keyVaultId: keyVault.outputs.keyVaultId
     appInsightsId: appInsights.outputs.appInsightsId
     openAiId: openai.outputs.openAiId
+    openAiEndpoint: openai.outputs.endpoint
   }
 }
 

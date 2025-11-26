@@ -19,11 +19,14 @@ param appInsightsId string
 @description('Resource ID of the Azure OpenAI account')
 param openAiId string
 
+@description('Endpoint URL of the Azure OpenAI account')
+param openAiEndpoint string
+
 // AI Foundry Workspace (formerly Hub)
-resource aiFoundry 'Microsoft.MachineLearningServices/workspaces@2025-09-01' = {
+resource aiFoundry 'Microsoft.MachineLearningServices/workspaces@2024-10-01' = {
   name: foundryName
   location: location
-  kind: 'AIServices'
+  kind: 'Hub'
   identity: {
     type: 'SystemAssigned'
   }
@@ -38,7 +41,7 @@ resource aiFoundry 'Microsoft.MachineLearningServices/workspaces@2025-09-01' = {
 }
 
 // AI Foundry Project
-resource aiProject 'Microsoft.MachineLearningServices/workspaces@2025-09-01' = {
+resource aiProject 'Microsoft.MachineLearningServices/workspaces@2024-10-01' = {
   name: projectName
   location: location
   kind: 'Project'
@@ -53,13 +56,17 @@ resource aiProject 'Microsoft.MachineLearningServices/workspaces@2025-09-01' = {
 }
 
 // Connection to Azure OpenAI
-resource openAiConnection 'Microsoft.MachineLearningServices/workspaces/connections@2025-09-01' = {
+resource openAiConnection 'Microsoft.MachineLearningServices/workspaces/connections@2024-10-01' = {
   parent: aiFoundry
   name: 'aoai-connection'
   properties: {
     category: 'AzureOpenAI'
-    target: reference(openAiId, '2025-09-01').properties.endpoint
+    target: openAiEndpoint
     authType: 'AAD'
+    metadata: {
+      ApiType: 'Azure'
+      ApiVersion: '2024-02-01'
+    }
   }
 }
 

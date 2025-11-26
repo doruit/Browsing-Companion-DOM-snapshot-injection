@@ -16,12 +16,12 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbarBrand}>
+      <div className={styles['navbar-brand']}>
         👟 Shoe Shop
       </div>
-      <div className={styles.navbarActions}>
-        {user && <span className={styles.userInfo}>Welcome, {user.name}</span>}
-        <button className={styles.navbarButton} onClick={handleLogout}>
+      <div className={styles['navbar-actions']}>
+        {user && <span className={styles['user-info']}>Welcome, {user.name}</span>}
+        <button className={styles['navbar-button']} onClick={handleLogout}>
           Logout
         </button>
       </div>

@@ -27,21 +27,21 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.loginCard}>
-        <h1 className={styles.loginTitle}>👟 Shoe Shop Login</h1>
+    <div className={styles['login-container']}>
+      <div className={styles['login-card']}>
+        <h1 className={styles['login-title']}>👟 Shoe Shop Login</h1>
 
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          {error && <div className={styles.errorMessage}>{error}</div>}
+        <form className={styles['login-form']} onSubmit={handleSubmit}>
+          {error && <div className={styles['error-message']}>{error}</div>}
 
-          <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.formLabel}>
+          <div className={styles['form-group']}>
+            <label htmlFor="email" className={styles['form-label']}>
               Email
             </label>
             <input
               id="email"
               type="email"
-              className={styles.formInput}
+              className={styles['form-input']}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -49,14 +49,14 @@ export const Login: React.FC = () => {
             />
           </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.formLabel}>
+          <div className={styles['form-group']}>
+            <label htmlFor="password" className={styles['form-label']}>
               Password
             </label>
             <input
               id="password"
               type="password"
-              className={styles.formInput}
+              className={styles['form-input']}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -64,12 +64,12 @@ export const Login: React.FC = () => {
             />
           </div>
 
-          <button type="submit" className={styles.submitButton} disabled={loading}>
+          <button type="submit" className={styles['submit-button']} disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <div className={styles.demoCredentials}>
+        <div className={styles['demo-credentials']}>
           <h4>Demo Accounts:</h4>
           <ul>
             <li>

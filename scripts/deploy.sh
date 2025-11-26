@@ -56,7 +56,9 @@ echo "🏗️  Deploying infrastructure (this may take 10-15 minutes)..."
 az deployment sub create \
   --location "$LOCATION" \
   --template-file ./infra/main.bicep \
-  --parameters ./infra/parameters/dev.bicepparam \
+  --parameters environment=dev \
+  --parameters location="$LOCATION" \
+  --parameters baseName=browsing-companion \
   --parameters principalId="$PRINCIPAL_ID" \
   --name "$DEPLOYMENT_NAME" \
   --output table
