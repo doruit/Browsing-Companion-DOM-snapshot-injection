@@ -554,7 +554,7 @@ Rotating question suggestions help users discover features:
 
 ## 🏛️ Implementation Approach
 
-This repository demonstrates **Method 1: Client-Side DOM Snapshot** - the simplest and most foundational approach to building context-aware chatbots. While this method has limitations (no persistent memory across sessions, no cross-device support, context limited to current viewport), it serves as an excellent starting point, working demo, and educational foundation.
+This repository demonstrates the **Client-Side DOM Snapshot**, let's call this method 1 - the simplest and most foundational approach to building context-aware chatbots. While this method has limitations (no persistent memory across sessions, no cross-device support, context limited to current viewport), it serves as an excellent starting point, working demo, and educational foundation.
 
 ### Why Start Here?
 
