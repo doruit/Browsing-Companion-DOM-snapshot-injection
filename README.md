@@ -49,7 +49,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
        │                    │                     │
        │                    │                     ├──────▶ Cosmos DB (user data)
        │                    │                     └──────▶ Blob Storage (snapshots)
-       │                    │
+       │                    │                     |
        └────── DOM Snapshot Capture ──────────────┘
 ```
 
@@ -76,7 +76,7 @@ Before you begin, ensure you have:
 
 ```
 1. Clone Repo          2. Azure Setup         3. Local Setup         4. Run Services
-   │                      │                      │                      │
+   │                     │                      │                      │
    ├─ Source code        ├─ az login            ├─ Python venv         ├─ Terminal 1:
    ├─ Scripts            ├─ deploy.sh           ├─ pip install         │  AI Service (8000)
    └─ Documentation      ├─ setup-env.sh        ├─ npm install (x2)    ├─ Terminal 2:
