@@ -1,6 +1,20 @@
 # Browsing Companion - DOM Snapshot Injection Demo
 
-A context-aware chatbot demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Foundry.
+A context-aware **browsing companion** demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Foundry.
+
+### Why "Browsing Companion" and not "Chatbot"?
+
+A traditional chatbot responds to user questions based on static knowledge or predefined scripts. A **browsing companion** goes further:
+
+| Chatbot | Browsing Companion |
+|---------|--------------------|
+| Responds to what you *ask* | Responds to what you *see* |
+| Static knowledge base | Real-time viewport awareness |
+| Text-only interaction | Visual context + conversation |
+| You describe what you're looking at | It already knows what you're looking at |
+| Generic responses | Personalized to your current view |
+
+The browsing companion acts as a **co-pilot** that shares your screen context, understands your scroll position, and can guide you through the page—not just answer questions about it.
 
 > ⚠️ **Note**: This is a demo/proof-of-concept project. There may be bugs, issues, or areas for improvement. **Feedback, pull requests, and contributions of any kind are highly appreciated!** Feel free to open issues or submit PRs.
 
@@ -26,7 +40,7 @@ A context-aware chatbot demo for e-commerce that "sees" what the user is viewing
 
 ## 🎯 Overview
 
-This project demonstrates a shoe e-commerce website where an AI chatbot assistant can:
+This project demonstrates a shoe e-commerce website where an AI browsing companion can:
 - See which products are currently visible on the user's screen
 - **Track products in three visibility zones**: visible, above the fold (scrolled past), and below the fold (not yet visible)
 - Guide users to scroll up or down when matching products are outside the visible area
@@ -36,7 +50,7 @@ This project demonstrates a shoe e-commerce website where an AI chatbot assistan
 
 ![Smart Shopping Companion Demo](docs/images/smart-shopping-companion.png)
 
-*Live demo showing the AI chatbot filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
+*Live demo showing the AI browsing companion filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
 
 ## 🏗️ Architecture
 
@@ -485,7 +499,7 @@ cd ..
 1. **Login** with one of the demo accounts
 2. **Browse products** - scroll through the shoe catalog
 3. **Set preferences** - Toggle B2B/B2C mode, select/deselect categories
-4. **Chat with AI** - Click the chat widget in the bottom right
+4. **Chat with Browsing Companion** - Click the chat widget in the bottom right
 5. **Ask questions** like:
    - "What products can you see on my screen?"
    - "Which shoes have discounts right now?"
@@ -500,7 +514,7 @@ The AI can see which products are currently visible in your viewport!
 ![Smart Shopping Companion in Action](docs/images/smart-shopping-companion.png)
 
 **What you're seeing:**
-- **Real-time Context Awareness**: The chatbot sees 8 products currently visible on screen
+- **Real-time Context Awareness**: The browsing companion sees 8 products currently visible on screen
 - **Natural Language Filters**: User asks "filter on shoes between 50 and 120 dollar" and the AI automatically applies price range filters
 - **Visual Feedback**: Filter bar updates to show $50-$120 range
 - **Markdown Formatting**: Chat responses use clean markdown with headers, lists, and formatting
@@ -509,7 +523,7 @@ The AI can see which products are currently visible in your viewport!
 
 ## ✨ Key Features Demonstrated
 
-### 1. **Context-Aware AI Chatbot** 🤖
+### 1. **Context-Aware AI Browsing Companion** 🤖
 The Smart Shopping Companion can "see" what's on your screen:
 - Detects visible products in viewport using Intersection Observer
 - **Tracks three visibility zones**: 
@@ -526,7 +540,7 @@ Control the product catalog using plain English:
 - "Show me discounted shoes" → Filters to items with discounts
 - "Filter on B2B" → Shows only business products  
 - "Shoes between $50 and $120" → Sets price range automatically
-- Filter state syncs between chatbot and UI in real-time
+- Filter state syncs between browsing companion and UI in real-time
 
 ### 3. **Rich Markdown Responses** ✨
 AI responses are beautifully formatted:
@@ -554,7 +568,7 @@ Rotating question suggestions help users discover features:
 
 ## 🏛️ Implementation Approach
 
-This repository demonstrates the **Client-Side DOM Snapshot**, let's call this method 1 - the simplest and most foundational approach to building context-aware chatbots. While this method has limitations (no persistent memory across sessions, no cross-device support, context limited to current viewport), it serves as an excellent starting point, working demo, and educational foundation.
+This repository demonstrates the **Client-Side DOM Snapshot**, let's call this method 1 - the simplest and most foundational approach to building context-aware browsing companions. While this method has limitations (no persistent memory across sessions, no cross-device support, context limited to current viewport), it serves as an excellent starting point, working demo, and educational foundation.
 
 ### Why Start Here?
 
@@ -566,7 +580,7 @@ Method 1 is perfect for:
 
 ### Six Methods Compared
 
-For a comprehensive guide to context-aware chatbot implementations ranging from simple mockups to enterprise-grade solutions, see **[Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md)**.
+For a comprehensive guide to context-aware browsing companion implementations ranging from simple mockups to enterprise-grade solutions, see **[Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md)**.
 
 Here's a quick comparison of all six methods:
 
@@ -725,7 +739,7 @@ Each service has its own `.env.local` file (created by `setup-env.sh`):
 
 Edit `services/api-gateway/data/products.json` to add more shoes or categories.
 
-### Customizing the Chat Widget
+### Customizing the Browsing Companion Widget
 
 Modify `frontend/src/components/ChatWidget/` to change appearance or add features.
 
