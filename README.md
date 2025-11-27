@@ -14,7 +14,7 @@ A traditional chatbot responds to user questions based on static knowledge or pr
 | You describe what you're looking at | It already knows what you're looking at |
 | Generic responses | Personalized to your current view |
 
-The browsing companion acts as a **co-pilot** that shares your screen context, understands your scroll position, and can guide you through the page—not just answer questions about it.
+The browsing companion acts as a **copilot** that shares your screen context, understands your scroll position, and can guide you through the page, not just answer questions about it.
 
 > ⚠️ **Note**: This is a demo/proof-of-concept project. There may be bugs, issues, or areas for improvement. **Feedback, pull requests, and contributions of any kind are highly appreciated!** Feel free to open issues or submit PRs.
 
