@@ -778,11 +778,12 @@ az group delete --name $RESOURCE_GROUP --yes --no-wait
 
 ## 📚 Learn More
 
+- [Technical Deep Dive](docs/TECHNICAL_DEEP_DIVE.md) - **How the DOM capture and viewport awareness system works**
+- [Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md) - Our comprehensive implementation guide
 - [Microsoft Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
 - [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [Cosmos DB Best Practices](https://learn.microsoft.com/en-us/azure/cosmos-db/)
 - [Bicep Documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
-- [Context-Aware Chatbot Methods](docs/CONTEXT_AWARE_METHODS.md) - Our comprehensive implementation guide
 
 ## 🤖 Development Notes
 
