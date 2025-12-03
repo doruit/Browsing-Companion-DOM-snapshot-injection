@@ -22,7 +22,7 @@ The browsing companion acts as a **copilot** that shares your screen context, un
 
 > ⚠️ **Note**: This is a demo/proof-of-concept project. There may be bugs, issues, or areas for improvement. **Feedback, pull requests, and contributions of any kind are highly appreciated!** Feel free to open issues or submit PRs.
 >
-> 📊 **Production Readiness**: For production implementations, review the [Enterprise Grade Score](docs/ENTERPRISE_GRADE_SCORE.md) to understand the security, testing, and observability improvements needed to take this from demo to production-ready.
+> 📊 **Production Readiness**: For production implementations, review [this report](docs/ENTERPRISE_GRADE_SCORE.md) to understand the security, testing, and observability improvements needed to take this from demo to production-ready.
 
 ## 📑 Table of Contents
 
