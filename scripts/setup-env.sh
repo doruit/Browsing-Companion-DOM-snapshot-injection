@@ -19,8 +19,9 @@ RESOURCE_GROUP=$(jq -r '.resourceGroupName.value' deployment-outputs.json)
 KEY_VAULT_NAME=$(jq -r '.keyVaultName.value' deployment-outputs.json)
 COSMOS_ENDPOINT=$(jq -r '.cosmosEndpoint.value' deployment-outputs.json)
 COSMOS_ACCOUNT=$(jq -r '.cosmosAccountName.value' deployment-outputs.json)
-OPENAI_ENDPOINT=$(jq -r '.openaiEndpoint.value' deployment-outputs.json)
-OPENAI_DEPLOYMENT=$(jq -r '.openaiDeploymentName.value' deployment-outputs.json)
+AI_FOUNDRY_ENDPOINT=$(jq -r '.aiFoundryEndpoint.value' deployment-outputs.json)
+AI_PROJECT_ENDPOINT=$(jq -r '.aiProjectEndpoint.value' deployment-outputs.json)
+MODEL_DEPLOYMENT=$(jq -r '.modelDeploymentName.value' deployment-outputs.json)
 STORAGE_ACCOUNT=$(jq -r '.storageAccountName.value' deployment-outputs.json)
 APP_INSIGHTS_CONNECTION=$(jq -r '.appInsightsConnectionString.value' deployment-outputs.json)
 
@@ -29,7 +30,6 @@ echo "✅ Parsed deployment outputs"
 # Get secrets from Key Vault
 echo "🔐 Retrieving secrets from Key Vault..."
 COSMOS_CONNECTION_STRING=$(az keyvault secret show --vault-name "$KEY_VAULT_NAME" --name "cosmos-connection-string" --query value -o tsv)
-OPENAI_API_KEY=$(az keyvault secret show --vault-name "$KEY_VAULT_NAME" --name "openai-api-key" --query value -o tsv)
 STORAGE_CONNECTION_STRING=$(az keyvault secret show --vault-name "$KEY_VAULT_NAME" --name "storage-connection-string" --query value -o tsv)
 
 echo "✅ Retrieved secrets from Key Vault"
@@ -38,10 +38,10 @@ echo "✅ Retrieved secrets from Key Vault"
 echo ""
 echo "📝 Creating .env file for Python AI Service..."
 cat > ./services/ai-service/.env.local <<EOF
-# Azure OpenAI Configuration
-AZURE_OPENAI_ENDPOINT=$OPENAI_ENDPOINT
-AZURE_OPENAI_API_KEY=$OPENAI_API_KEY
-AZURE_OPENAI_DEPLOYMENT_NAME=$OPENAI_DEPLOYMENT
+# Microsoft Foundry (AI Foundry) Configuration
+# Uses managed identity - no API key needed
+AI_FOUNDRY_PROJECT_ENDPOINT=$AI_PROJECT_ENDPOINT
+AI_FOUNDRY_MODEL_DEPLOYMENT_NAME=$MODEL_DEPLOYMENT
 
 # Cosmos DB Configuration
 COSMOS_ENDPOINT=$COSMOS_ENDPOINT
@@ -108,7 +108,10 @@ echo ""
 echo "🚀 Next steps:"
 echo "   1. Install dependencies for each service (see README.md)"
 echo "   2. Start the services in separate terminals:"
-echo "      - Python AI Service: cd services/ai-service && python -m uvicorn main:app --reload --port 8000"
+echo "      - Python AI Service: cd services/ai-service && pip install -r requirements.txt --pre && python -m uvicorn main:app --reload --port 8000"
 echo "      - Node.js Gateway: cd services/api-gateway && npm run dev"
 echo "      - React Frontend: cd frontend && npm run dev"
+echo ""
+echo "📝 Note: The AI service now uses Microsoft Agent Framework with managed identity."
+echo "   Make sure you're signed in with 'az login' for local development."
 echo ""

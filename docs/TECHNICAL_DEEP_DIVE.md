@@ -45,8 +45,9 @@ The Browsing Companion uses a three-tier architecture:
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         AI SERVICE (Python/FastAPI)                      │
 │  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐     │
-│  │ ContextProvider │───▶│  ChatService    │───▶│ Azure OpenAI    │     │
-│  │ (formats data)  │    │ (builds prompt) │    │ (GPT-4o-mini)   │     │
+│  │ ContextProvider │───▶│  ChatService    │───▶│ Microsoft Agent │     │
+│  │ (formats data)  │    │ (Agent Framework│    │ Framework +     │     │
+│  │                 │    │  ChatAgent)     │    │ AI Foundry      │     │
 │  └─────────────────┘    └─────────────────┘    └─────────────────┘     │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -57,7 +58,7 @@ The Browsing Companion uses a three-tier architecture:
 2. **Intersection Observer** detects which products are visible/above/below viewport
 3. **User sends message** → ChatPanel captures DOM snapshot
 4. **Snapshot sent** to API Gateway → forwarded to AI Service
-5. **AI Service** formats context + generates response
+5. **AI Service** formats context + generates response via Microsoft Agent Framework
 6. **Response returned** → ChatPanel displays + enables click-to-scroll
 
 ---

@@ -24,10 +24,10 @@ for handler in logging.root.handlers:
 
 
 class Settings(BaseSettings):
-    # Azure OpenAI
-    azure_openai_endpoint: str
-    azure_openai_api_key: str
-    azure_openai_deployment_name: str = "gpt-4o-mini"
+    # Microsoft Foundry (AI Foundry) Configuration
+    # Using managed identity authentication (no API key needed)
+    ai_foundry_project_endpoint: str
+    ai_foundry_model_deployment_name: str = "gpt-4o-mini"
     
     # Cosmos DB
     cosmos_endpoint: str

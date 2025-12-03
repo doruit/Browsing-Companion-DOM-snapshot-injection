@@ -19,7 +19,7 @@ sleep 2
 # Start AI Service
 echo "🤖 Starting AI Service (port 8000)..."
 cd "$SCRIPT_DIR/services/ai-service"
-source "$SCRIPT_DIR/.venv/bin/activate"
+source "$SCRIPT_DIR/services/ai-service/venv/bin/activate"
 uvicorn main:app --reload --host 0.0.0.0 --port 8000 > "$SCRIPT_DIR/logs/ai-service.log" 2>&1 &
 AI_PID=$!
 echo "   ✓ AI Service started (PID: $AI_PID)"

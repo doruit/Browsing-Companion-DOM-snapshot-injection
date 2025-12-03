@@ -1,24 +1,35 @@
+"""
+Chat Service using Microsoft Agent Framework.
+
+This service provides AI-powered chat capabilities for the Browsing Companion
+application using Microsoft Foundry (Azure AI Foundry) with the Agent Framework SDK.
+"""
+
 from typing import Dict, Any, List, Optional
-from openai import AzureOpenAI
 from azure.cosmos import CosmosClient, exceptions
+from azure.identity.aio import DefaultAzureCredential
+from agent_framework import ChatAgent
+from agent_framework.azure import AzureAIAgentClient
 from config import get_settings
 from services.context_provider import DOMSnapshotProvider
 import json
 import uuid
+import asyncio
 from datetime import datetime
 
 settings = get_settings()
 
 
 class ChatService:
+    """
+    Chat service using Microsoft Agent Framework for AI-powered conversations.
+    
+    Uses Azure AI Foundry (Microsoft Foundry) with managed identity authentication.
+    """
+    
     def __init__(self):
-        # Initialize Azure OpenAI client
-        # Using 2024-10-01-preview for GPT-4o-mini support
-        self.openai_client = AzureOpenAI(
-            api_key=settings.azure_openai_api_key,
-            api_version="2024-10-01-preview",
-            azure_endpoint=settings.azure_openai_endpoint
-        )
+        # Azure credential for managed identity
+        self._credential = None
         
         # Initialize Cosmos DB client
         self.cosmos_client = CosmosClient.from_connection_string(
@@ -31,6 +42,13 @@ class ChatService:
         # Initialize context provider
         self.context_provider = DOMSnapshotProvider()
     
+    @property
+    def credential(self):
+        """Lazy initialization of Azure credential."""
+        if self._credential is None:
+            self._credential = DefaultAzureCredential()
+        return self._credential
+    
     async def process_chat(
         self,
         user_id: str,
@@ -39,7 +57,7 @@ class ChatService:
         session_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Process a chat message with optional DOM context.
+        Process a chat message with optional DOM context using Microsoft Agent Framework.
         
         Args:
             user_id: User identifier
@@ -66,41 +84,30 @@ class ChatService:
         if session_id:
             conversation_history = await self.get_conversation_history(session_id)
         
-        # Prepare messages for OpenAI
-        messages = [
-            {"role": "system", "content": system_prompt}
-        ]
+        # Build the full conversation for the agent
+        full_message = self._build_conversation_message(message, conversation_history)
         
-        # Add conversation history
-        for msg in conversation_history[-10:]:  # Last 10 messages
-            messages.append({
-                "role": msg["role"],
-                "content": msg["content"]
-            })
-        
-        # Add current user message
-        messages.append({
-            "role": "user",
-            "content": message
-        })
-        
-        # Call Azure OpenAI
-        # GPT-4o-mini supports standard parameters including temperature
-        # Using lower temperature (0.3) for more deterministic, accurate filtering responses
         try:
-            response = self.openai_client.chat.completions.create(
-                model=settings.azure_openai_deployment_name,
-                messages=messages,
-                max_tokens=800,
-                temperature=0.3
-            )
-            
-            assistant_message = response.choices[0].message.content
+            # Use Microsoft Agent Framework with Azure AI Foundry
+            async with ChatAgent(
+                chat_client=AzureAIAgentClient(
+                    project_endpoint=settings.ai_foundry_project_endpoint,
+                    model_deployment_name=settings.ai_foundry_model_deployment_name,
+                    async_credential=self.credential,
+                    agent_name="BrowsingCompanionAgent",
+                ),
+                instructions=system_prompt,
+            ) as agent:
+                # Get response using streaming for better UX
+                response_text = ""
+                async for chunk in agent.run_stream(full_message):
+                    if chunk.text:
+                        response_text += chunk.text
+                
+                assistant_message = response_text
             
             # Debug logging
-            print(f"OpenAI Response: {response}")
-            print(f"Assistant message: {assistant_message}")
-            print(f"Message type: {type(assistant_message)}")
+            print(f"Agent Response: {assistant_message[:200]}...")
             
             # Parse filter commands from response
             filters = self._extract_filters(assistant_message)
@@ -128,7 +135,26 @@ class ChatService:
             return result
             
         except Exception as e:
-            raise Exception(f"Error calling Azure OpenAI: {str(e)}")
+            raise Exception(f"Error calling Microsoft Agent Framework: {str(e)}")
+    
+    def _build_conversation_message(
+        self,
+        current_message: str,
+        conversation_history: List[Dict[str, Any]]
+    ) -> str:
+        """Build conversation context from history for the agent."""
+        if not conversation_history:
+            return current_message
+        
+        # Include last few messages for context
+        context_parts = []
+        for msg in conversation_history[-6:]:  # Last 6 messages (3 turns)
+            role = "User" if msg["role"] == "user" else "Assistant"
+            context_parts.append(f"{role}: {msg['content']}")
+        
+        context_parts.append(f"User: {current_message}")
+        
+        return "\n\n".join(context_parts)
     
     def _build_system_prompt(
         self,
@@ -413,6 +439,8 @@ Based on your preferences, I suggest..."""
 
 
 class PreferencesService:
+    """Service for managing user preferences."""
+    
     def __init__(self):
         self.cosmos_client = CosmosClient.from_connection_string(
             settings.cosmos_connection_string

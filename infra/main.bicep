@@ -15,9 +15,15 @@ param tenantId string = subscription().tenantId
 @description('Your Azure AD object ID (for Key Vault access)')
 param principalId string
 
+@description('Model deployment name')
+param modelDeploymentName string = 'gpt-4o-mini'
+
+@description('Resource group name (optional, auto-generated if not provided)')
+param resourceGroupName string = 'rg-${baseName}-${environment}'
+
 // Resource group
 resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
-  name: 'rg-${baseName}-${environment}'
+  name: resourceGroupName
   location: location
   tags: {
     Environment: environment
@@ -32,7 +38,7 @@ module keyVault 'modules/key-vault.bicep' = {
   name: 'keyvault-deployment'
   params: {
     location: location
-    keyVaultName: 'kv-browse-comp-${environment}'
+    keyVaultName: 'kv-${baseName}-${environment}'
     tenantId: tenantId
     principalId: principalId
   }
@@ -58,16 +64,6 @@ module cosmosDb 'modules/cosmos-db.bicep' = {
   }
 }
 
-// Azure OpenAI
-module openai 'modules/openai.bicep' = {
-  scope: rg
-  name: 'openai-deployment'
-  params: {
-    location: location
-    accountName: 'openai-${baseName}-${environment}'
-  }
-}
-
 // Application Insights
 module appInsights 'modules/app-insights.bicep' = {
   scope: rg
@@ -78,19 +74,15 @@ module appInsights 'modules/app-insights.bicep' = {
   }
 }
 
-// AI Foundry Workspace and Project
+// AI Foundry (Microsoft Foundry - includes model deployments)
 module aiFoundry 'modules/ai-foundry.bicep' = {
   scope: rg
   name: 'aifoundry-deployment'
   params: {
     location: location
-    foundryName: 'foundry-${baseName}-${environment}'
-    projectName: 'aiproject-${baseName}-${environment}'
-    storageAccountId: storage.outputs.storageAccountId
-    keyVaultId: keyVault.outputs.keyVaultId
-    appInsightsId: appInsights.outputs.appInsightsId
-    openAiId: openai.outputs.openAiId
-    openAiEndpoint: openai.outputs.endpoint
+    foundryName: 'aif-${baseName}-${environment}'
+    projectName: 'prj-${baseName}-${environment}'
+    modelDeploymentName: modelDeploymentName
   }
 }
 
@@ -101,9 +93,9 @@ module secrets 'modules/secrets.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.keyVaultName
     cosmosConnectionString: cosmosDb.outputs.connectionString
-    openaiEndpoint: openai.outputs.endpoint
-    openaiKey: openai.outputs.apiKey
     storageConnectionString: storage.outputs.connectionString
+    aiFoundryEndpoint: aiFoundry.outputs.endpoint
+    aiFoundryProjectEndpoint: aiFoundry.outputs.projectEndpoint
   }
   dependsOn: [
     keyVault
@@ -115,9 +107,10 @@ output resourceGroupName string = rg.name
 output keyVaultName string = keyVault.outputs.keyVaultName
 output cosmosAccountName string = cosmosDb.outputs.accountName
 output cosmosEndpoint string = cosmosDb.outputs.endpoint
-output openaiEndpoint string = openai.outputs.endpoint
-output openaiDeploymentName string = openai.outputs.deploymentName
 output storageAccountName string = storage.outputs.storageAccountName
 output aiFoundryName string = aiFoundry.outputs.foundryName
+output aiFoundryEndpoint string = aiFoundry.outputs.endpoint
 output aiProjectName string = aiFoundry.outputs.projectName
+output aiProjectEndpoint string = aiFoundry.outputs.projectEndpoint
+output modelDeploymentName string = aiFoundry.outputs.modelDeploymentName
 output appInsightsConnectionString string = appInsights.outputs.connectionString

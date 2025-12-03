@@ -1,7 +1,8 @@
 using '../main.bicep'
 
 param environment = 'dev'
-param location = 'eastus'
-param baseName = 'browsing-companion'
-// Note: principalId must be provided at deployment time via --parameters principalId=<your-object-id>
-// You can get your object ID by running: az ad signed-in-user show --query id -o tsv
+param location = 'westus'  // West US has better AI Foundry support
+param baseName = 'browsercompdom'  // Short name for storage account compatibility
+param modelDeploymentName = 'gpt-4o-mini'
+param principalId = '1d18bbec-ccea-4818-8f94-1e2f80306df1'
+param resourceGroupName = 'rg-browser-companion-DOM-method'

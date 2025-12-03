@@ -5,16 +5,15 @@ param keyVaultName string
 @secure()
 param cosmosConnectionString string
 
-@description('Azure OpenAI endpoint')
-param openaiEndpoint string
-
-@description('Azure OpenAI API key')
-@secure()
-param openaiKey string
-
 @description('Storage connection string')
 @secure()
 param storageConnectionString string
+
+@description('AI Foundry endpoint')
+param aiFoundryEndpoint string
+
+@description('AI Foundry project endpoint for Agent Service')
+param aiFoundryProjectEndpoint string
 
 resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
   name: keyVaultName
@@ -28,26 +27,26 @@ resource cosmosSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   }
 }
 
-resource openaiEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
-  parent: keyVault
-  name: 'openai-endpoint'
-  properties: {
-    value: openaiEndpoint
-  }
-}
-
-resource openaiKeySecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
-  parent: keyVault
-  name: 'openai-api-key'
-  properties: {
-    value: openaiKey
-  }
-}
-
 resource storageSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'storage-connection-string'
   properties: {
     value: storageConnectionString
+  }
+}
+
+resource aiFoundryEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
+  parent: keyVault
+  name: 'ai-foundry-endpoint'
+  properties: {
+    value: aiFoundryEndpoint
+  }
+}
+
+resource aiFoundryProjectEndpointSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
+  parent: keyVault
+  name: 'ai-foundry-project-endpoint'
+  properties: {
+    value: aiFoundryProjectEndpoint
   }
 }
