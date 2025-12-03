@@ -2,6 +2,10 @@
 
 A context-aware **browsing companion** demo for e-commerce that "sees" what the user is viewing through DOM snapshot injection. Built with React, Node.js, Python, and Microsoft Foundry.
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/dvanderuit/)
+
+> 📦 **Open Source**: This repository (Method 1) is freely available. [Other methods](docs/CONTEXT_AWARE_METHODS.md) describe more advanced implementations — if your organization is interested in reviewing or implementing those approaches, feel free to [reach out via LinkedIn](https://www.linkedin.com/in/dvanderuit/).
+
 ### Why "Browsing Companion" and not "Chatbot"?
 
 A traditional chatbot responds to user questions based on static knowledge or predefined scripts. A **browsing companion** goes further:
@@ -48,9 +52,9 @@ This project demonstrates a shoe e-commerce website where an AI browsing compani
 - Answer questions about visible products using context from DOM snapshots
 - Maintain conversation history and user preferences
 
-![Smart Shopping Companion Demo](docs/images/smart-shopping-companion.png)
+![Smart Shopping Companion Demo](docs/vids/demo.gif)
 
-*Live demo showing the AI browsing companion filtering products by price range ($50-$120) using natural language, while displaying context-aware responses about the 8 visible products on screen.*
+*Live demo showing the AI browsing companion in action — filtering products, answering questions about visible items, and providing context-aware responses in real-time.*
 
 ## 🏗️ Architecture
 
@@ -641,7 +645,7 @@ If you're building on this demo, here's the recommended progression:
 1. **Month 1-2**: Start with **Method 1** (this repo) to validate your concept
 2. **Month 3-4**: Upgrade to **Method 3** (Cosmos DB sessions) when you need production reliability
 3. **Month 6-9**: Add **Method 5** (vector embeddings) when you want AI-powered recommendations
-4. **Month 12+**: Consider **Method 4** (event streams) or **Method 6** (knowledge graphs) for enterprise scale
+4. **Month 12+**: Consider **Method 4** (event streams) or **Method 6** (multi-modal AI) for enterprise scale
 
 Each evolution builds on the previous one - you're not rewriting from scratch, just adding layers of sophistication.
 
@@ -872,6 +876,23 @@ This transparency is important because:
 
 If you have questions about the AI-assisted development process, feel free to open an issue or reach out!
 
+## 💼 About This Repository
+
+This repository is **open source** and demonstrates **Method 1** (Client-Side DOM Snapshot). The documentation also describes more advanced approaches (Methods 3-6) for production use cases.
+
+| This Repo (Open Source) | Advanced Methods (3-6) |
+|-------------------------|------------------------|
+| ✅ Client-side context capture | Persistent cross-device memory |
+| ✅ Real-time viewport awareness | Behavioral analytics & ML insights |
+| ✅ Basic chat integration | Semantic search & recommendations |
+| ✅ Demo-ready implementation | Enterprise-scale multi-modal systems |
+
+If your organization is interested in implementing Methods 3-6, I'm available for commercial engagements.
+
+[![LinkedIn](https://img.shields.io/badge/Contact-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/dvanderuit/)
+
+---
+
 ## 📄 License
 
 MIT License - See LICENSE file for details
@@ -883,3 +904,7 @@ This is a demo project. Feel free to fork and adapt for your needs!
 ---
 
 Built with ❤️ using Microsoft Foundry and Azure AI Services
+
+---
+
+*For enterprise implementations and consulting inquiries: [LinkedIn](https://www.linkedin.com/in/dvanderuit/)*

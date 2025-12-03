@@ -21,14 +21,14 @@ This guide is particularly valuable for:
 
 ## Quick Comparison
 
-| Method | Memory | Latency | Cost/User | Complexity | Best For |
+| Method | Memory | Latency | Cost/User | Effort/Complexity | Best For |
 |--------|--------|---------|-----------|------------|----------|
-| **1. DOM Snapshot** | None | ⚡ 50ms | $0.001 | ⭐ Simple | **This repo** - Prototypes, MVPs |
-| **2. Browser Storage** | Session | ⚡ 100ms | $0.002 | ⭐⭐ Moderate | PWAs, offline apps |
-| **3. Cosmos DB** | Multi-session | ⚡ 200ms | $0.02 | ⭐⭐⭐ Moderate | Production apps |
-| **4. Event Streams** | Real-time | ⚡⚡ 500ms | $0.60 | ⭐⭐⭐⭐ Complex | High-traffic platforms |
-| **5. Vector Embeddings** | Semantic | ⚡⚡ 300ms | $0.30 | ⭐⭐⭐⭐ Complex | Personalization |
-| **6. Multi-Modal** | Complete | ⚡⚡⚡ 2s | $6.00 | ⭐⭐⭐⭐⭐ Very Complex | Enterprise |
+| **1. DOM Snapshot** | None | ⚡ 50ms | $0.001 | ⭐ | **This repo** - Prototypes, MVPs |
+| **2. Browser Storage** | Session | ⚡ 100ms | $0.002 | ⭐⭐ | PWAs, offline apps |
+| **3. Cosmos DB** | Multi-session | ⚡ 200ms | $0.02 | ⭐⭐⭐ | Production apps |
+| **4. Event Streams** | Real-time | ⚡⚡ 500ms | $0.60 | ⭐⭐⭐⭐ | High-traffic platforms |
+| **5. Vector Embeddings** | Semantic | ⚡⚡ 300ms | $0.30 | ⭐⭐⭐⭐ | Personalization |
+| **6. Multi-Modal** | Complete | ⚡⚡⚡ 2s | $6.00 | ⭐⭐⭐⭐⭐ | Enterprise |
 
 ---
 
@@ -192,6 +192,8 @@ Moves context storage to the backend using **Azure Cosmos DB** with hierarchical
 - Customer support with history
 - SaaS applications
 
+> 💬 **Interested in implementing Method 3?** For commercial inquiries, [reach out via LinkedIn](https://www.linkedin.com/in/dvanderuit/).
+
 ---
 
 ## Method 4: Event Stream + Real-Time Aggregation 📊
@@ -228,6 +230,8 @@ User Actions → Event Hub → Azure Functions → Cosmos DB
 - Fraud detection
 - A/B testing
 
+> 💬 **Interested in implementing Method 4?** For commercial inquiries, [reach out via LinkedIn](https://www.linkedin.com/in/dvanderuit/).
+
 ---
 
 ## Method 5: Vector Embeddings + Semantic Memory 🧠
@@ -263,19 +267,21 @@ Generates vector embeddings for interactions and performs semantic search using 
 - Content discovery
 - Customer support (similar issues)
 
+> 💬 **Interested in implementing Method 5?** For commercial inquiries, [reach out via LinkedIn](https://www.linkedin.com/in/dvanderuit/).
+
 ---
 
-## Method 6: Multi-Modal Context + Knowledge Graph 🏢
+## Method 6: Multi-Modal Context + Visual AI 🏢
 
 **Maturity Level**: Enterprise-scale  
 **Implementation Time**: 2-3 months
 
 ### Overview
-Combines screenshots (GPT-4 Vision), DOM snapshots, behavioral events, vector embeddings, and knowledge graph relationships.
+Combines screenshots (GPT-4 Vision), DOM snapshots, behavioral events, and vector embeddings for complete visual understanding.
 
 ### Architecture
 ```
-Screenshot + DOM + Events → [Cosmos DB SQL + Gremlin + Vectors]
+Screenshot + DOM + Events → [Cosmos DB SQL + Vectors]
                                         ↓
                             Context Fusion Layer
                                         ↓
@@ -284,9 +290,9 @@ Screenshot + DOM + Events → [Cosmos DB SQL + Gremlin + Vectors]
 
 ### Context Retention
 ✅ Complete multi-modal memory  
-✅ Rich relational context (graph)  
+✅ Visual context understanding  
 ✅ Explainable recommendations  
-✅ Visual understanding
+✅ Screenshot analysis with GPT-4 Vision
 
 ### Cost Analysis
 **Monthly cost for 100,000 users**: ~$6,000-7,000/month
@@ -296,6 +302,8 @@ Screenshot + DOM + Events → [Cosmos DB SQL + Gremlin + Vectors]
 - High-value luxury goods
 - Fashion styling assistants
 - Automotive parts (compatibility)
+
+> 💬 **Interested in implementing Method 6?** For commercial inquiries, [reach out via LinkedIn](https://www.linkedin.com/in/dvanderuit/).
 
 ---
 
@@ -335,7 +343,7 @@ container = database.create_container_if_not_exists(
 - **Timeline**: 2-3 weeks
 
 #### Phase 4: Enterprise Features (Method 6) 🏢
-- **Add**: Visual analysis + knowledge graph
+- **Add**: Visual analysis + multi-modal AI
 - **Users**: 1M+
 - **Cost**: $5,000-10,000/month
 - **Timeline**: 2-3 months
@@ -412,5 +420,17 @@ This **Smart Shopping Companion repository** demonstrates **Method 1** - the sim
 - `docs/FILTER_IMPLEMENTATION.md` - Filter system details
 - `frontend/src/utils/domCapture.ts` - DOM snapshot implementation
 - `services/ai-service/services/chat_service.py` - AI context handling
+
+---
+
+## 💬 Interested in Methods 3-6?
+
+This repository (Method 1) is open source. Methods 3-6 describe more advanced approaches for production use cases.
+
+If your organization is interested in reviewing or implementing these methods, I'm available for commercial engagements.
+
+[![LinkedIn](https://img.shields.io/badge/Contact-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/dvanderuit/)
+
+---
 
 *For questions or contributions, see the project repository.*
