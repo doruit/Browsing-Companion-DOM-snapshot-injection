@@ -37,7 +37,9 @@ The browsing companion acts as a **copilot** that shares your screen context, un
 - [🔧 Configuration](#-configuration)
 - [🧪 Development](#-development)
 - [📚 Learn More](#-learn-more)
+- [💼 About This Repository](#-about-this-repository)
 - [📄 License](#-license)
+- [🤝 Contributing](#-contributing)
 
 ## 🎯 Overview
 
