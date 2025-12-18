@@ -46,3 +46,13 @@ jobs:
           echo "Resource Group: ${{ steps.deploy.outputs.resourceGroupName }}"
           echo "Key Vault: ${{ steps.deploy.outputs.keyVaultName }}"
           echo "Cosmos DB: ${{ steps.deploy.outputs.cosmosAccountName }}"
+
+      - name: Report Failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Workflow Failed: ${{ github.workflow }} - Run ${{ github.run_number }}" \
+            --body "The deployment workflow failed. Please investigate.\n\nError details can be found in the workflow run logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\nAssigning to @copilot for automated assistance." \
+            --assignee ${{ github.actor }}
