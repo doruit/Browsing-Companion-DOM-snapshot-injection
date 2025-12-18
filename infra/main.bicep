@@ -100,9 +100,6 @@ module secrets 'modules/secrets.bicep' = {
     aiFoundryEndpoint: aiFoundry.outputs.endpoint
     aiFoundryProjectEndpoint: aiFoundry.outputs.projectEndpoint
   }
-  dependsOn: [
-    keyVault
-  ]
 }
 
 // Outputs
