@@ -33,6 +33,7 @@ jobs:
         with:
           scope: subscription
           region: eastus2
+          deploymentName: browser-comp-${{ github.run_number }}
           subscriptionId: f0e5e36e-a145-46f7-93c2-35f33f8c9009
           template: ./infra/main.bicep
           parameters: >
