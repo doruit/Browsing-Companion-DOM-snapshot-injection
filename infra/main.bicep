@@ -209,3 +209,4 @@ output appInsightsConnectionString string = appInsights.outputs.connectionString
 output staticWebAppName string = staticWebApp.outputs.name
 output apiGatewayUrl string = 'https://${apiGateway.outputs.defaultHostName}'
 output aiServiceUrl string = 'https://${aiService.outputs.defaultHostName}'
+output embeddingDeploymentName string = aiFoundry.outputs.embeddingDeploymentName

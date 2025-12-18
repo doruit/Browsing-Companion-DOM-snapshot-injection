@@ -16,6 +16,15 @@ param modelVersion string = '2024-07-18'
 @description('Model capacity (tokens per minute in thousands)')
 param modelCapacity int = 30
 
+@description('Embedding model deployment name')
+param embeddingDeploymentName string = 'text-embedding-3-small'
+
+@description('Embedding model version')
+param embeddingModelVersion string = '1'
+
+@description('Embedding model capacity (tokens per minute in thousands)')
+param embeddingCapacity int = 30
+
 // AI Foundry Account (new pattern using CognitiveServices/accounts with allowProjectManagement)
 resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   name: foundryName
@@ -80,6 +89,25 @@ resource modelDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-
   }
 }
 
+// Model Deployment (Text Embedding 3 Small)
+resource embeddingDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
+  parent: aiFoundry
+  name: embeddingDeploymentName
+  sku: {
+    name: 'Standard' 
+    capacity: embeddingCapacity
+  }
+  properties: {
+    model: {
+      format: 'OpenAI'
+      name: 'text-embedding-3-small'
+      version: embeddingModelVersion
+    }
+    versionUpgradeOption: 'OnceNewDefaultVersionAvailable'
+    currentCapacity: embeddingCapacity
+  }
+}
+
 // Note: Microsoft.DefaultV2 is a system-managed RAI policy that is automatically applied.
 // We don't need to create or specify it - it's the default content safety policy.
 
@@ -93,3 +121,4 @@ output projectPrincipalId string = aiProject.identity.principalId
 output endpoint string = aiFoundry.properties.endpoint
 output projectEndpoint string = 'https://${foundryName}.cognitiveservices.azure.com/agents/v1.0/projects/${projectName}'
 output modelDeploymentName string = modelDeployment.name
+output embeddingDeploymentName string = embeddingDeployment.name
