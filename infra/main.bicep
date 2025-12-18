@@ -80,7 +80,7 @@ module aiFoundry 'modules/ai-foundry.bicep' = {
   name: 'aifoundry-deployment'
   params: {
     location: location
-    foundryName: 'aif-${baseName}-${environment}'
+    foundryName: 'aif-${baseName}-${environment}-${substring(uniqueString(resourceGroup().id), 0, 6)}'
     projectName: 'prj-${baseName}-${environment}'
     modelDeploymentName: modelDeploymentName
   }
