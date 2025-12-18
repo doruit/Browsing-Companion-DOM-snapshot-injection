@@ -28,5 +28,17 @@ jobs:
         with:
           inlineScript: |
             echo "Deleting resource group rg-brow-comp-dev..."
-            az group delete --name rg-brow-comp-dev --yes --no-wait
-            echo "Deletion initiated."
+            az group delete --name rg-brow-comp-dev --yes --wait
+            echo "Resource group deleted."
+
+      - name: Purge Soft-Deleted Resources
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            echo "Purging soft-deleted Key Vaults..."
+            # List soft-deleted vaults and purge them (if name matches pattern)
+            az keyvault list-deleted --resource-type vault --query "[?starts_with(name, 'kv-brow-comp')].name" -o tsv | xargs -I {} az keyvault purge --name {} --location eastus2 --no-wait || echo "No Key Vaults to purge."
+
+            echo "Purging soft-deleted AI Foundry/Cognitive Services..."
+            # List soft-deleted accounts and purge them
+            az cognitive account list-deleted --location eastus2 --query "[?starts_with(name, 'aif-brow-comp')].name" -o tsv | xargs -I {} az cognitive account purge --name {} --location eastus2 || echo "No AI services to purge."
