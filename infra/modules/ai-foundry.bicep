@@ -51,6 +51,7 @@ resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
     allowProjectManagement: true
     publicNetworkAccess: 'Enabled'
     disableLocalAuth: false
+    restore: true
   }
 }
 
