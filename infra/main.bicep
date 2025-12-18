@@ -7,7 +7,7 @@ param environment string = 'dev'
 param location string = 'eastus'
 
 @description('Base name for all resources')
-param baseName string = 'browsing-companion'
+param baseName string = 'brow-comp'
 
 @description('Your Azure AD tenant ID')
 param tenantId string = subscription().tenantId

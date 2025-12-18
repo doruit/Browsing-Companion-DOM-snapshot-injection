@@ -1,0 +1,32 @@
+name: Destroy Azure Resources
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "yes" to confirm destruction'
+        required: true
+        default: 'no'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'yes'
+    
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Delete Resource Group
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            echo "Deleting resource group rg-brow-comp-dev..."
+            az group delete --name rg-brow-comp-dev --yes --no-wait
+            echo "Deletion initiated."

@@ -1,0 +1,47 @@
+name: Deploy to Azure
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/**'
+      - '.github/workflows/azure-deploy.yml'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Infrastructure
+        uses: azure/arm-deploy@v1
+        id: deploy
+        with:
+          scope: subscription
+          region: eastus
+          subscriptionId: f0e5e36e-a145-46f7-93c2-35f33f8c9009
+          template: ./infra/main.bicep
+          parameters: >
+            environment=dev
+            location=eastus
+            principalId=${{ secrets.AZURE_PRINCIPAL_ID }}
+
+      - name: Show Deployment Outputs
+        run: |
+          echo "Resource Group: ${{ steps.deploy.outputs.resourceGroupName }}"
+          echo "Key Vault: ${{ steps.deploy.outputs.keyVaultName }}"
+          echo "Cosmos DB: ${{ steps.deploy.outputs.cosmosAccountName }}"
