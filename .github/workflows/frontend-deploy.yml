@@ -76,3 +76,4 @@ jobs:
           app_location: "/frontend"
           api_location: ""
           output_location: "dist"
+          app_build_command: "VITE_API_URL=${{ env.VITE_API_URL }} npm run build"
