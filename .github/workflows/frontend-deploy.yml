@@ -17,6 +17,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment: dev
+    timeout-minutes: 45
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

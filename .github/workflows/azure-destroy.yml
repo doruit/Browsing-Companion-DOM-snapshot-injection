@@ -3,6 +3,14 @@ name: Destroy Azure Resources
 on:
   workflow_dispatch:
     inputs:
+      resource_group:
+        description: 'Resource Group Name'
+        required: true
+        default: 'rg-brow-comp-dev'
+      location:
+        description: 'Region for Soft-Delete Purge (KeyVault/AI Foundry)'
+        required: true
+        default: 'eastus2'
       confirm:
         description: 'Type "yes" to confirm destruction'
         required: true
@@ -16,6 +24,7 @@ jobs:
   destroy:
     runs-on: ubuntu-latest
     if: github.event.inputs.confirm == 'yes'
+    timeout-minutes: 45
     
     steps:
       - name: Azure Login
@@ -25,20 +34,28 @@ jobs:
 
       - name: Delete Resource Group
         uses: azure/CLI@v1
+        env:
+          RESOURCE_GROUP: ${{ github.event.inputs.resource_group }}
         with:
           inlineScript: |
-            echo "Deleting resource group rg-brow-comp-dev..."
-            az group delete --name rg-brow-comp-dev --yes --wait
-            echo "Resource group deleted."
+            echo "Deleting resource group $RESOURCE_GROUP..."
+            if $(az group exists --name $RESOURCE_GROUP); then
+              az group delete --name $RESOURCE_GROUP --yes --wait
+              echo "Resource group deleted."
+            else
+              echo "Resource group does not exist. Skipping delete."
+            fi
 
       - name: Purge Soft-Deleted Resources
         uses: azure/CLI@v1
+        env:
+          LOCATION: ${{ github.event.inputs.location }}
         with:
           inlineScript: |
-            echo "Purging soft-deleted Key Vaults..."
+            echo "Purging soft-deleted Key Vaults in $LOCATION..."
             # List soft-deleted vaults and purge them (if name matches pattern)
-            az keyvault list-deleted --resource-type vault --query "[?starts_with(name, 'kv-brow-comp')].name" -o tsv | xargs -I {} az keyvault purge --name {} --location eastus2 --no-wait || echo "No Key Vaults to purge."
+            az keyvault list-deleted --resource-type vault --location $LOCATION --query "[?starts_with(name, 'kv-brow-comp')].name" -o tsv | xargs -I {} az keyvault purge --name {} --location $LOCATION --no-wait || echo "No Key Vaults to purge."
 
-            echo "Purging soft-deleted AI Foundry/Cognitive Services..."
+            echo "Purging soft-deleted AI Foundry/Cognitive Services in $LOCATION..."
             # List soft-deleted accounts and purge them
-            az cognitive account list-deleted --location eastus2 --query "[?starts_with(name, 'aif-brow-comp')].name" -o tsv | xargs -I {} az cognitive account purge --name {} --location eastus2 || echo "No AI services to purge."
+            az cognitive account list-deleted --location $LOCATION --query "[?starts_with(name, 'aif-brow-comp')].name" -o tsv | xargs -I {} az cognitive account purge --name {} --location $LOCATION || echo "No AI services to purge."
