@@ -130,6 +130,10 @@ module apiGateway 'modules/app-service.bicep' = {
         name: 'AI_SERVICE_URL'
         value: 'https://app-ai-${baseName}-${environment}-${uniqueSuffix}.azurewebsites.net' // Forward reference to AI Service
       }
+      {
+        name: 'CORS_ORIGIN'
+        value: '*'
+      }
     ]
   }
 }
