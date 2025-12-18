@@ -32,13 +32,16 @@ resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   }
 }
 
+// Generate a unique suffix based on subscription ID, environment, and baseName
+var uniqueSuffix = substring(uniqueString(subscription().id, environment, baseName), 0, 4)
+
 // Key Vault (deploy first for secrets)
 module keyVault 'modules/key-vault.bicep' = {
   scope: rg
   name: 'keyvault-deployment'
   params: {
     location: location
-    keyVaultName: 'kv-${baseName}-${environment}'
+    keyVaultName: 'kv-${baseName}-${environment}-${uniqueSuffix}'
     tenantId: tenantId
     principalId: principalId
   }
@@ -50,7 +53,7 @@ module storage 'modules/storage.bicep' = {
   name: 'storage-deployment'
   params: {
     location: location
-    storageAccountName: 'st${replace(baseName, '-', '')}${environment}'
+    storageAccountName: 'st${replace(baseName, '-', '')}${environment}${uniqueSuffix}'
   }
 }
 
@@ -60,7 +63,7 @@ module cosmosDb 'modules/cosmos-db.bicep' = {
   name: 'cosmosdb-deployment'
   params: {
     location: location
-    accountName: 'cosmos-${baseName}-${environment}'
+    accountName: 'cosmos-${baseName}-${environment}-${uniqueSuffix}'
   }
 }
 
@@ -80,7 +83,7 @@ module aiFoundry 'modules/ai-foundry.bicep' = {
   name: 'aifoundry-deployment'
   params: {
     location: location
-    foundryName: 'aif-${baseName}-${environment}-${substring(uniqueString(subscription().id, environment, baseName), 0, 6)}'
+    foundryName: 'aif-${baseName}-${environment}-${uniqueSuffix}'
     projectName: 'prj-${baseName}-${environment}'
     modelDeploymentName: modelDeploymentName
   }
