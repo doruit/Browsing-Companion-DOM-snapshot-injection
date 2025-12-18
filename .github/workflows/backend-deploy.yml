@@ -50,12 +50,12 @@ jobs:
           fi
           
           echo "Found Gateway App: $APP_NAME"
-          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+          echo "app_name=$APP_NAME" >> $GITHUB_OUTPUT
 
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP_NAME }}
+          app-name: ${{ steps.discover.outputs.app_name }}
           package: ./services/api-gateway/release.zip
 
   deploy-ai-service:
@@ -94,10 +94,10 @@ jobs:
           fi
           
           echo "Found AI Service App: $APP_NAME"
-          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+          echo "app_name=$APP_NAME" >> $GITHUB_OUTPUT
 
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP_NAME }}
+          app-name: ${{ steps.discover.outputs.app_name }}
           package: ./services/ai-service/release.zip

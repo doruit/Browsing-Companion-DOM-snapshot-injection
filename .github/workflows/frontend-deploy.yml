@@ -48,7 +48,7 @@ jobs:
           SWA_TOKEN=$(az staticwebapp secrets list --name $SWA_NAME --resource-group $RESOURCE_GROUP --query "properties.apiKey" -o tsv)
           
           echo "::add-mask::$SWA_TOKEN"
-          echo "SWA_TOKEN=$SWA_TOKEN" >> $GITHUB_ENV
+          echo "swa_token=$SWA_TOKEN" >> $GITHUB_OUTPUT
 
       - name: Discover API Gateway URL
         id: gateway
@@ -59,21 +59,22 @@ jobs:
           
           if [ -z "$GATEWAY_NAME" ]; then
             echo "::warning::Could not find API Gateway. Defaulting to empty (or localhost if locally set)."
+            echo "api_url=" >> $GITHUB_OUTPUT
           else
              GATEWAY_HOST=$(az webapp show --name $GATEWAY_NAME --resource-group $RESOURCE_GROUP --query "defaultHostName" -o tsv)
              echo "Found Gateway: $GATEWAY_HOST"
-             echo "VITE_API_URL=https://$GATEWAY_HOST" >> $GITHUB_ENV
+             echo "api_url=https://$GATEWAY_HOST" >> $GITHUB_OUTPUT
           fi
 
       - name: Build and Deploy
         uses: Azure/static-web-apps-deploy@v1
         env:
-          VITE_API_URL: ${{ env.VITE_API_URL }}
+          VITE_API_URL: ${{ steps.gateway.outputs.api_url }}
         with:
-          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
+          azure_static_web_apps_api_token: ${{ steps.discover.outputs.swa_token }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/frontend"
           api_location: ""
           output_location: "dist"
-          app_build_command: "VITE_API_URL=${{ env.VITE_API_URL }} npm run build"
+          app_build_command: "VITE_API_URL=${{ steps.gateway.outputs.api_url }} npm run build"
