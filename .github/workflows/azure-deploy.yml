@@ -32,12 +32,12 @@ jobs:
         id: deploy
         with:
           scope: subscription
-          region: eastus
+          region: eastus2
           subscriptionId: f0e5e36e-a145-46f7-93c2-35f33f8c9009
           template: ./infra/main.bicep
           parameters: >
             environment=dev
-            location=eastus
+            location=eastus2
             principalId=${{ secrets.AZURE_PRINCIPAL_ID }}
 
       - name: Show Deployment Outputs

@@ -35,7 +35,7 @@ resource secretsOfficerRoleAssignment 'Microsoft.Authorization/roleAssignments@2
   properties: {
     roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b86a8fe4-44ce-4948-aee5-eccb2c155cd7')
     principalId: principalId
-    principalType: 'User'
+    principalType: 'ServicePrincipal'
   }
 }
 

@@ -4,7 +4,7 @@ targetScope = 'subscription'
 param environment string = 'dev'
 
 @description('Azure region for all resources')
-param location string = 'eastus'
+param location string = 'eastus2'
 
 @description('Base name for all resources')
 param baseName string = 'brow-comp'
