@@ -41,6 +41,7 @@ jobs:
             environment=dev
             location=eastus2
             principalId=${{ secrets.AZURE_PRINCIPAL_ID }}
+          failOnStdErr: false
 
       - name: Show Deployment Outputs
         run: |
