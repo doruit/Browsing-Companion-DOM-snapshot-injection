@@ -40,7 +40,7 @@ jobs:
           inlineScript: |
             echo "Deleting resource group $RESOURCE_GROUP..."
             if $(az group exists --name $RESOURCE_GROUP); then
-              az group delete --name $RESOURCE_GROUP --yes --wait
+              az group delete --name $RESOURCE_GROUP --yes
               echo "Resource group deleted."
             else
               echo "Resource group does not exist. Skipping delete."
