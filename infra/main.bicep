@@ -103,17 +103,12 @@ module secrets 'modules/secrets.bicep' = {
 }
 
 // App Service Plan (Linux)
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
-  name: 'plan-${baseName}-${environment}'
-  location: location
-  sku: {
-    name: 'B1' // Basic tier
-    tier: 'Basic'
-    capacity: 1
-  }
-  kind: 'linux'
-  properties: {
-    reserved: true // Required for Linux
+module appServicePlan 'modules/app-service-plan.bicep' = {
+  scope: rg
+  name: 'app-service-plan-deployment'
+  params: {
+    location: location
+    planName: 'plan-${baseName}-${environment}'
   }
 }
 
@@ -124,7 +119,7 @@ module apiGateway 'modules/app-service.bicep' = {
   params: {
     location: location
     appName: 'app-gateway-${baseName}-${environment}-${uniqueSuffix}'
-    serverFarmId: appServicePlan.id
+    serverFarmId: appServicePlan.outputs.id
     linuxFxVersion: 'NODE|20-lts'
     appSettings: [
       {
@@ -146,7 +141,7 @@ module aiService 'modules/app-service.bicep' = {
   params: {
     location: location
     appName: 'app-ai-${baseName}-${environment}-${uniqueSuffix}'
-    serverFarmId: appServicePlan.id
+    serverFarmId: appServicePlan.outputs.id
     linuxFxVersion: 'PYTHON|3.11'
     appCommandLine: 'python -m uvicorn main:app --host 0.0.0.0 --port 8000'
     appSettings: [
