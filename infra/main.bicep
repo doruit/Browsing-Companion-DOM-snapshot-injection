@@ -107,7 +107,7 @@ module appServicePlan 'modules/app-service-plan.bicep' = {
   scope: rg
   name: 'app-service-plan-deployment'
   params: {
-    location: location
+    location: 'centralus' // Use Central US to avoid quota/capacity issues in East US 2
     planName: 'plan-${baseName}-${environment}'
   }
 }
@@ -117,7 +117,7 @@ module apiGateway 'modules/app-service.bicep' = {
   scope: rg
   name: 'api-gateway-deployment'
   params: {
-    location: location
+    location: 'centralus'
     appName: 'app-gateway-${baseName}-${environment}-${uniqueSuffix}'
     serverFarmId: appServicePlan.outputs.id
     linuxFxVersion: 'NODE|20-lts'
@@ -139,7 +139,7 @@ module aiService 'modules/app-service.bicep' = {
   scope: rg
   name: 'ai-service-deployment'
   params: {
-    location: location
+    location: 'centralus'
     appName: 'app-ai-${baseName}-${environment}-${uniqueSuffix}'
     serverFarmId: appServicePlan.outputs.id
     linuxFxVersion: 'PYTHON|3.11'
