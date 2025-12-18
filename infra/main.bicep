@@ -105,7 +105,7 @@ module secrets 'modules/secrets.bicep' = {
 // App Service Plan (Linux)
 module appServicePlan 'modules/app-service-plan.bicep' = {
   scope: rg
-  name: 'app-service-plan-deployment'
+  name: 'plan-deploy-${uniqueString(deployment().name)}'
   params: {
     location: 'centralus' // Use Central US to avoid quota/capacity issues in East US 2
     planName: 'plan-${baseName}-${environment}'
@@ -115,7 +115,7 @@ module appServicePlan 'modules/app-service-plan.bicep' = {
 // API Gateway (Node.js)
 module apiGateway 'modules/app-service.bicep' = {
   scope: rg
-  name: 'api-gateway-deployment'
+  name: 'gateway-deploy-${uniqueString(deployment().name)}'
   params: {
     location: 'centralus'
     appName: 'app-gateway-${baseName}-${environment}-${uniqueSuffix}'
@@ -137,7 +137,7 @@ module apiGateway 'modules/app-service.bicep' = {
 // AI Service (Python)
 module aiService 'modules/app-service.bicep' = {
   scope: rg
-  name: 'ai-service-deployment'
+  name: 'ai-deploy-${uniqueString(deployment().name)}'
   params: {
     location: 'centralus'
     appName: 'app-ai-${baseName}-${environment}-${uniqueSuffix}'
