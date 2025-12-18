@@ -50,8 +50,25 @@ jobs:
           echo "::add-mask::$SWA_TOKEN"
           echo "SWA_TOKEN=$SWA_TOKEN" >> $GITHUB_ENV
 
+      - name: Discover API Gateway URL
+        id: gateway
+        run: |
+          RESOURCE_GROUP="rg-brow-comp-dev"
+          echo "Searching for API Gateway Web App in $RESOURCE_GROUP..."
+          GATEWAY_NAME=$(az webapp list --resource-group $RESOURCE_GROUP --query "[?starts_with(name, 'app-gateway')].name | [0]" -o tsv)
+          
+          if [ -z "$GATEWAY_NAME" ]; then
+            echo "::warning::Could not find API Gateway. Defaulting to empty (or localhost if locally set)."
+          else
+             GATEWAY_HOST=$(az webapp show --name $GATEWAY_NAME --resource-group $RESOURCE_GROUP --query "defaultHostName" -o tsv)
+             echo "Found Gateway: $GATEWAY_HOST"
+             echo "VITE_API_URL=https://$GATEWAY_HOST" >> $GITHUB_ENV
+          fi
+
       - name: Build and Deploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          VITE_API_URL: ${{ env.VITE_API_URL }}
         with:
           azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
