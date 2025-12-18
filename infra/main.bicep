@@ -102,6 +102,16 @@ module secrets 'modules/secrets.bicep' = {
   }
 }
 
+// Static Web App
+module staticWebApp 'modules/static-web-app.bicep' = {
+  scope: rg
+  name: 'static-web-app-deployment'
+  params: {
+    location: location
+    staticWebAppName: 'swa-${baseName}-${environment}-${uniqueSuffix}'
+  }
+}
+
 // Outputs
 output resourceGroupName string = rg.name
 output keyVaultName string = keyVault.outputs.keyVaultName
@@ -114,3 +124,4 @@ output aiProjectName string = aiFoundry.outputs.projectName
 output aiProjectEndpoint string = aiFoundry.outputs.projectEndpoint
 output modelDeploymentName string = aiFoundry.outputs.modelDeploymentName
 output appInsightsConnectionString string = appInsights.outputs.connectionString
+output staticWebAppName string = staticWebApp.outputs.name

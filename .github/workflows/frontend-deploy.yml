@@ -1,0 +1,61 @@
+name: Deploy Frontend
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Discover Static Web App
+        id: discover
+        run: |
+          # Find the Static Web App in the resource group that starts with 'swa-brow-comp-dev'
+          # We use a pattern match because of the unique suffix
+          RESOURCE_GROUP="rg-brow-comp-dev"
+          
+          echo "Searching for Static Web App in $RESOURCE_GROUP..."
+          
+          SWA_NAME=$(az staticwebapp list --resource-group $RESOURCE_GROUP --query "[?starts_with(name, 'swa-brow-comp-dev')].name | [0]" -o tsv)
+          
+          if [ -z "$SWA_NAME" ]; then
+            echo "::error::Could not find a Static Web App starting with 'swa-brow-comp-dev' in '$RESOURCE_GROUP'."
+            exit 1
+          fi
+          
+          echo "Found Static Web App: $SWA_NAME"
+          
+          # Get the deployment token securely
+          SWA_TOKEN=$(az staticwebapp secrets list --name $SWA_NAME --resource-group $RESOURCE_GROUP --query "properties.apiKey" -o tsv)
+          
+          echo "::add-mask::$SWA_TOKEN"
+          echo "SWA_TOKEN=$SWA_TOKEN" >> $GITHUB_ENV
+
+      - name: Build and Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/frontend"
+          api_location: ""
+          output_location: "dist"
