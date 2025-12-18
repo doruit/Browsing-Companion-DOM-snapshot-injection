@@ -38,7 +38,7 @@ var uniqueSuffix = substring(uniqueString(subscription().id, environment, baseNa
 // Key Vault (deploy first for secrets)
 module keyVault 'modules/key-vault.bicep' = {
   scope: rg
-  name: 'keyvault-deployment'
+  name: 'keyvault-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     keyVaultName: 'kv-${baseName}-${environment}-${uniqueSuffix}'
@@ -50,7 +50,7 @@ module keyVault 'modules/key-vault.bicep' = {
 // Storage Account
 module storage 'modules/storage.bicep' = {
   scope: rg
-  name: 'storage-deployment'
+  name: 'storage-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     storageAccountName: 'st${replace(baseName, '-', '')}${environment}${uniqueSuffix}'
@@ -60,7 +60,7 @@ module storage 'modules/storage.bicep' = {
 // Cosmos DB
 module cosmosDb 'modules/cosmos-db.bicep' = {
   scope: rg
-  name: 'cosmosdb-deployment'
+  name: 'cosmosdb-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     accountName: 'cosmos-${baseName}-${environment}-${uniqueSuffix}'
@@ -70,7 +70,7 @@ module cosmosDb 'modules/cosmos-db.bicep' = {
 // Application Insights
 module appInsights 'modules/app-insights.bicep' = {
   scope: rg
-  name: 'appinsights-deployment'
+  name: 'appinsights-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     appInsightsName: 'ai-${baseName}-${environment}'
@@ -80,7 +80,7 @@ module appInsights 'modules/app-insights.bicep' = {
 // AI Foundry (Microsoft Foundry - includes model deployments)
 module aiFoundry 'modules/ai-foundry.bicep' = {
   scope: rg
-  name: 'aifoundry-deployment'
+  name: 'aifoundry-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     foundryName: 'aif-${baseName}-${environment}-${uniqueSuffix}'
@@ -92,7 +92,7 @@ module aiFoundry 'modules/ai-foundry.bicep' = {
 // Store connection strings in Key Vault
 module secrets 'modules/secrets.bicep' = {
   scope: rg
-  name: 'secrets-deployment'
+  name: 'secrets-deployment-${uniqueString(deployment().name)}'
   params: {
     keyVaultName: keyVault.outputs.keyVaultName
     cosmosConnectionString: cosmosDb.outputs.connectionString
@@ -183,7 +183,7 @@ module aiService 'modules/app-service.bicep' = {
 // Static Web App
 module staticWebApp 'modules/static-web-app.bicep' = {
   scope: rg
-  name: 'static-web-app-deployment'
+  name: 'static-web-app-deployment-${uniqueString(deployment().name)}'
   params: {
     location: location
     staticWebAppName: 'swa-${baseName}-${environment}-${uniqueSuffix}'
