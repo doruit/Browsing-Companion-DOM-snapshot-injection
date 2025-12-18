@@ -57,5 +57,5 @@ jobs:
           gh issue create \
             --title "Workflow Failed: ${{ github.workflow }} - Run ${{ github.run_number }}" \
             --body "The deployment workflow failed. Please investigate.\n\nError details can be found in the workflow run logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\nAssigning to @copilot for automated assistance." \
-            --assignee ${{ github.actor }} \
+            --assignee "${{ github.actor }},Copilot" \
             --label "copilot"
