@@ -33,7 +33,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
 }
 
 // Generate a unique suffix based on subscription ID, environment, and baseName
-var uniqueSuffix = substring(uniqueString(subscription().id, environment, baseName, 'v3'), 0, 4)
+var uniqueSuffix = substring(uniqueString(subscription().id, environment, baseName, resourceGroupName), 0, 4)
 
 // Key Vault (deploy first for secrets)
 module keyVault 'modules/key-vault.bicep' = {
