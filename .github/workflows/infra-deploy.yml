@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: Deploy Infrastructure
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - 'infra/**'
-      - '.github/workflows/azure-deploy.yml'
+      - '.github/workflows/infra-deploy.yml'
 
 permissions:
   id-token: write
