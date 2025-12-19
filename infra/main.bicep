@@ -19,7 +19,7 @@ param principalId string
 param modelDeploymentName string = 'gpt-4o-mini'
 
 @description('Resource group name (optional, auto-generated if not provided)')
-param resourceGroupName string = 'rg-${baseName}-${environment}'
+param resourceGroupName string = 'rg-${baseName}-${environment}-01'
 
 // Resource group
 resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {

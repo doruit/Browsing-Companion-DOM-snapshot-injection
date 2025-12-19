@@ -6,7 +6,7 @@ on:
       resource_group:
         description: 'Resource Group Name'
         required: true
-        default: 'rg-brow-comp-dev'
+        default: 'rg-brow-comp-dev-01'
       location:
         description: 'Region for Soft-Delete Purge (KeyVault/AI Foundry)'
         required: true

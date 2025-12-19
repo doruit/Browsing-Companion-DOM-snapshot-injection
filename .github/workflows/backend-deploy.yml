@@ -41,7 +41,7 @@ jobs:
       - name: Retrieve Gateway Web App Resource
         id: discover
         run: |
-          RESOURCE_GROUP="rg-brow-comp-dev"
+          RESOURCE_GROUP="rg-brow-comp-dev-01"
           echo "Searching for Gateway Web App in $RESOURCE_GROUP..."
           APP_NAME=$(az webapp list --resource-group $RESOURCE_GROUP --query "[?starts_with(name, 'app-gateway')].name | [0]" -o tsv)
           
@@ -86,7 +86,7 @@ jobs:
       - name: Retrieve AI Service Web App Resource
         id: discover
         run: |
-          RESOURCE_GROUP="rg-brow-comp-dev"
+          RESOURCE_GROUP="rg-brow-comp-dev-01"
           echo "Searching for AI Service Web App in $RESOURCE_GROUP..."
           APP_NAME=$(az webapp list --resource-group $RESOURCE_GROUP --query "[?starts_with(name, 'app-ai')].name | [0]" -o tsv)
           

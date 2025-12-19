@@ -32,7 +32,7 @@ jobs:
         run: |
           # Find the Static Web App in the resource group that starts with 'swa-brow-comp-dev'
           # We use a pattern match because of the unique suffix
-          RESOURCE_GROUP="rg-brow-comp-dev"
+          RESOURCE_GROUP="rg-brow-comp-dev-01"
           
           echo "Searching for Static Web App in $RESOURCE_GROUP..."
           
@@ -54,7 +54,7 @@ jobs:
       - name: Resolve API Gateway Endpoint
         id: gateway
         run: |
-          RESOURCE_GROUP="rg-brow-comp-dev"
+          RESOURCE_GROUP="rg-brow-comp-dev-01"
           echo "Searching for API Gateway Web App in $RESOURCE_GROUP..."
           GATEWAY_NAME=$(az webapp list --resource-group $RESOURCE_GROUP --query "[?starts_with(name, 'app-gateway')].name | [0]" -o tsv)
           
