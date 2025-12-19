@@ -15,7 +15,7 @@ permissions:
   issues: write
 
 jobs:
-  deploy:
+  provision-infrastructure:
     runs-on: ubuntu-latest
     environment: dev
     timeout-minutes: 45
@@ -24,12 +24,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Azure Login
+      - name: Authenticate with Azure
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy Infrastructure
+      - name: Provision Azure Resources
         uses: azure/arm-deploy@v1
         id: deploy
         with:
@@ -44,7 +44,7 @@ jobs:
             principalId=${{ secrets.AZURE_PRINCIPAL_ID }}
           failOnStdErr: false
 
-      - name: Show Deployment Outputs
+      - name: Display Provisioning Outputs
         run: |
           echo "Resource Group: ${{ steps.deploy.outputs.resourceGroupName }}"
           echo "Key Vault: ${{ steps.deploy.outputs.keyVaultName }}"

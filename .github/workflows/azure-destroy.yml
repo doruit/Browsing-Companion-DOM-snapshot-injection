@@ -21,18 +21,18 @@ permissions:
   contents: read
 
 jobs:
-  destroy:
+  decommission-resources:
     runs-on: ubuntu-latest
     if: github.event.inputs.confirm == 'yes'
     timeout-minutes: 45
     
     steps:
-      - name: Azure Login
+      - name: Authenticate with Azure
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Delete Resource Group
+      - name: Delete Azure Resource Group
         uses: azure/CLI@v1
         env:
           RESOURCE_GROUP: ${{ github.event.inputs.resource_group }}
